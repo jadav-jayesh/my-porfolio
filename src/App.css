@@ -1,38 +1,35 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.main {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+@font-face {
+  font-family: "EuropaRegular";
+  src: local("Europa-Regular"),
+    url("./Assets/Fonts/Europa-Regular.ttf") format("truetype");
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: "EuropaBold";
+  src: local("Europa-Bold"),
+    url("./Assets/Fonts/Europa-Bold.ttf") format("truetype");
+  font-weight: 900;
+}
+@font-face {
+  font-family: "EuropaLight";
+  src: local("Europa-Light"),
+    url("./Assets/Fonts/Europa-Light.woff2.ttf") format("truetype");
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Minion";
+  src: local("Minion"), url("./Assets/Fonts/Minion.otf") format("truetype");
 }

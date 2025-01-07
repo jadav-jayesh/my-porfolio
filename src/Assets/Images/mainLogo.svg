@@ -1,0 +1,8 @@
+<svg viewBox="0 0 450 200" xmlns="http://www.w3.org/2000/svg" height="50">
+  <!-- Name and title -->
+  <text x="220" y="85" font-family="Arial" font-weight="bold" font-size="60" fill="#ecf0f1" text-anchor="middle">JAYESH JADAV</text>
+  <text x="220" y="130" font-family="Arial" font-size="33" fill="#f1f1f1" text-anchor="middle">FRONT END DEVELOPER</text>
+
+  <!-- Decorative line -->
+  <line x1="0" y1="95" x2="450" y2="95" stroke="#1abc9c" stroke-width="1"/>
+</svg>
