@@ -6,12 +6,13 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import { colors } from "../../Config/theme";
 import useStyles from "./styles";
 import AirplayOutlinedIcon from "@mui/icons-material/AirplayOutlined";
+import { useSelector } from "react-redux";
 
 export default function Experience() {
-  const className = useStyles();
+  const { themeData } = useSelector((state) => state.auth);
+  const className = useStyles(themeData)();
 
   const array = [
     {
@@ -34,11 +35,11 @@ export default function Experience() {
     <Grid container className={className.container}>
       <Grid size={{ xs: 11, md: 9 }}>
         <Grid style={{ textAlign: "center", marginBottom: 30 }}>
-          <Typography variant="title" style={{ color: colors.primary }}>
+          <Typography variant="title" style={{ color: themeData.headerText }}>
             Experiences
           </Typography>
         </Grid>
-        <VerticalTimeline lineColor={colors.primary}>
+        <VerticalTimeline lineColor={themeData.primary}>
           {array?.map((item, index) => {
             return (
               <VerticalTimelineElement
@@ -46,21 +47,33 @@ export default function Experience() {
                 date={item?.date}
                 icon={<AirplayOutlinedIcon />}
                 iconStyle={{
-                  background: colors.white,
-                  color: colors.black,
+                  background: themeData.white,
+                  color: themeData.black,
                 }}
                 contentStyle={{
-                  backgroundColor: colors.primary,
-                  color: colors.white,
+                  backgroundColor: themeData.primary,
+                  color: themeData.white,
                 }}
                 dateClassName={className.date}
                 contentArrowStyle={{
-                  borderRight: `7px solid ${colors.primary}`,
+                  borderRight: `7px solid ${themeData.primary}`,
                 }}
               >
-                <Typography variant="head">{item?.title}</Typography>
-                <Typography variant="subTitle">{item?.company}</Typography>
-                <Typography variant="subText">{item?.description}</Typography>
+                <Typography variant="head" style={{ color: themeData.white }}>
+                  {item?.title}
+                </Typography>
+                <Typography
+                  variant="subTitle"
+                  style={{ color: themeData.white }}
+                >
+                  {item?.company}
+                </Typography>
+                <Typography
+                  variant="subText"
+                  style={{ color: themeData.white }}
+                >
+                  {item?.description}
+                </Typography>
               </VerticalTimelineElement>
             );
           })}

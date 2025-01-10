@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Typography, LinearProgress } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { colors } from "../../Config/theme";
 import useStyles from "./styles";
 import { categoryLabels, skills } from "../../Config/static_data";
+import { useSelector } from "react-redux";
 
 function Skills() {
+  const { themeData } = useSelector((state) => state.auth);
   const [visible, setVisible] = useState(false);
   const [progress, setProgress] = useState({});
-  const className = useStyles();
+  const className = useStyles(themeData)();
 
   useEffect(() => {
     const handleScroll = (entries) => {
@@ -56,7 +57,7 @@ function Skills() {
     <Grid container className={className.container}>
       <Grid size={{ xs: 11, md: 9 }}>
         <Grid className={className.mainHeader}>
-          <Typography variant="title" style={{ color: colors.primary }}>
+          <Typography variant="title" style={{ color: themeData.headerText }}>
             Skills
           </Typography>
         </Grid>

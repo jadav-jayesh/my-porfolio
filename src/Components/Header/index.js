@@ -3,13 +3,19 @@ import Grid from "@mui/material/Grid2";
 import React, { useState } from "react";
 import { Close, Menu } from "@mui/icons-material";
 import useStyles from "./styles";
-import { colors } from "../../Config/theme";
+import { colors, darkColors } from "../../Config/theme";
 import MainLogo from "../MainLogo";
+import MaterialUISwitch from "../Switch";
+import { useDispatch, useSelector } from "react-redux";
+import authActions from "../../Redux/Reducer/auth/action";
 
 const Header = (props) => {
+  const dispatch = useDispatch();
+  const { themeData, switchBool } = useSelector((state) => state.auth);
+  const { setThemeData, setSwitchBool } = authActions;
   const { value = "home", handleChange = () => null } = props;
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const classes = useStyles();
+  const classes = useStyles(themeData)();
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -21,13 +27,23 @@ const Header = (props) => {
     setDrawerOpen(open);
   };
 
+  // this function is used to handle switch changed
+  const handleSwitch = (e) => {
+    dispatch(setSwitchBool(e.target.checked));
+    if (e.target.checked) {
+      dispatch(setThemeData(darkColors));
+    } else {
+      dispatch(setThemeData(colors));
+    }
+  };
+
   return (
     <Grid
       container
       style={{
         justifyContent: "center",
         padding: "10px 0px",
-        backgroundColor: colors.primary,
+        backgroundColor: themeData.primary,
       }}
     >
       <Grid
@@ -43,14 +59,13 @@ const Header = (props) => {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 30,
+            gap: 10,
           }}
         >
           <Tabs
             value={value}
             onChange={(event, newValue) => handleChange(event, newValue)}
-            classes={{ indicator: classes.indicator }}
-            sx={{ display: { xs: "none", md: "flex" } }}
+            sx={{ display: { xs: "none", md: "flex" }, gap: 10 }}
           >
             <Tab value={"home"} label="Home" className={classes.tab} />
             <Tab value={"skills"} label="Skills" className={classes.tab} />
@@ -63,27 +78,23 @@ const Header = (props) => {
             <Tab value={"project"} label="projects" className={classes.tab} />
             <Tab value={"contact"} label="Contact" className={classes.tab} />
           </Tabs>
+          <Grid className={classes.switchContainer}>
+            <MaterialUISwitch onChange={handleSwitch} checked={switchBool} />
+          </Grid>
         </Grid>
         {/* Icon Button for Mobile Menu */}
-        <IconButton
-          onClick={toggleDrawer(true)}
-          sx={{
-            display: {
-              xs: "block",
-              md: "none",
-              color: colors.white,
-              transition: "1s",
-            },
-          }}
-        >
-          <Menu />
-        </IconButton>
+        <Grid className={classes.iconContainer}>
+          <MaterialUISwitch onChange={handleSwitch} checked={switchBool} />
+          <IconButton onClick={toggleDrawer(true)} className={classes.menuIcon}>
+            <Menu />
+          </IconButton>
+        </Grid>
 
         {/* Drawer for Mobile */}
         <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
           <Box
             sx={{
-              backgroundColor: colors.primary,
+              backgroundColor: themeData.primary,
               height: "100%",
               paddingTop: "30px",
             }}
@@ -91,7 +102,7 @@ const Header = (props) => {
             <IconButton
               sx={{
                 display: {
-                  color: colors.white,
+                  color: themeData.white,
                   position: "absolute",
                   top: 0,
                   left: 0,
@@ -104,7 +115,6 @@ const Header = (props) => {
             <Tabs
               value={value}
               onChange={(event, newValue) => handleChange(event, newValue)}
-              classes={{ indicator: classes.indicator }}
               orientation="vertical"
               sx={{ width: 250 }}
             >

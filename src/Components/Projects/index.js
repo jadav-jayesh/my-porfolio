@@ -2,8 +2,8 @@ import React from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
-import { colors } from "../../Config/theme";
 import useStyles from "./styles";
+import { useSelector } from "react-redux";
 
 const projects = [
   {
@@ -45,13 +45,14 @@ const projects = [
 ];
 
 const Projects = () => {
-  const className = useStyles();
+  const { themeData } = useSelector((state) => state.auth);
+  const className = useStyles(themeData)();
 
   return (
     <Grid container className={className.container}>
       <Grid size={{ xs: 11, md: 9 }}>
         <Grid style={{ textAlign: "center", marginBottom: 30 }}>
-          <Typography variant="title" style={{ color: colors.primary }}>
+          <Typography variant="title" style={{ color: themeData.headerText }}>
             Projects
           </Typography>
         </Grid>
@@ -60,13 +61,13 @@ const Projects = () => {
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
               <Card
                 sx={{
-                  backgroundColor: colors.background,
-                  color: colors.text,
+                  backgroundColor: themeData.background,
+                  color: themeData.text,
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  boxShadow: colors.shadow,
+                  boxShadow: themeData.shadow,
                 }}
               >
                 <CardContent>

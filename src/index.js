@@ -5,10 +5,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@mui/material";
 import theme from "./Config/theme";
+import { Provider, useSelector } from "react-redux";
+import { store } from "./Redux/Store/configureStore";
 
-const RootApp = () => {
+const ThemedApp = () => {
+  const themeData = useSelector((state) => state.auth.themeData);
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme(themeData)}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
@@ -16,10 +19,12 @@ const RootApp = () => {
   );
 };
 
+const RootApp = () => (
+  <Provider store={store}>
+    <ThemedApp />
+  </Provider>
+);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RootApp />);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

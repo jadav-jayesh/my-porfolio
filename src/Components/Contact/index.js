@@ -9,12 +9,13 @@ import {
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { colors } from "../../Config/theme";
 import { Setting } from "../../Utils/setting";
 import SendIcon from "@mui/icons-material/Send";
 import emailjs from "emailjs-com";
+import { useSelector } from "react-redux";
 
 function Contact() {
+  const { themeData } = useSelector((state) => state.auth);
   const className = useStyles();
   const { email_regex, phone_regex } = Setting.JS_Regex;
   const [formValues, setFormValues] = useState({
@@ -100,13 +101,13 @@ function Contact() {
     <Grid container className={className.container}>
       <Grid size={{ xs: 11, md: 10 }}>
         <Grid style={{ textAlign: "center" }}>
-          <Typography variant="title" style={{ color: colors.primary }}>
+          <Typography variant="title" style={{ color: themeData.headerText }}>
             Contact
           </Typography>
           <Typography variant="h1">Contact With Me</Typography>
         </Grid>
         <Grid className={className.section}>
-          <Grid size={8}>
+          <Grid size={{ xs: 11, md: 9 }}>
             <form onSubmit={handleSubmit} noValidate>
               <Grid style={{ display: "flex", flexWrap: "wrap" }} gap={2}>
                 {/* Name Field */}
@@ -121,6 +122,9 @@ function Contact() {
                     error={!!errors.name}
                     helperText={errors.name}
                     required
+                    style={{
+                      color: themeData.secondary,
+                    }}
                   />
                 </Grid>
 
@@ -177,7 +181,7 @@ function Contact() {
                 <Grid item size={{ xs: 12, md: 11.8 }}>
                   <TextField
                     fullWidth
-                    multiline
+                    // multiline
                     rows={4}
                     label="Message"
                     name="message"

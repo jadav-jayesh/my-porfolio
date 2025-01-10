@@ -1,7 +1,6 @@
 import { Divider, IconButton, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import React from "react";
-import { colors } from "../../Config/theme";
 import {
   ArrowUpward,
   Facebook,
@@ -11,17 +10,19 @@ import {
 import XIcon from "@mui/icons-material/X";
 import useStyles from "./styles";
 import MainLogo from "../MainLogo";
+import { useSelector } from "react-redux";
 
 function Footer(props) {
+  const { themeData } = useSelector((state) => state.auth);
   const { handleScrollToSection = () => null } = props;
-  const classes = useStyles();
+  const classes = useStyles(themeData)();
 
   return (
     <Grid
       container
       style={{
         padding: "20px 0px",
-        backgroundColor: colors.primary,
+        backgroundColor: themeData.primary,
         alignItems: "center",
         flexDirection: "column",
       }}
@@ -43,7 +44,10 @@ function Footer(props) {
           </IconButton>
         </Grid>
         <Divider
-          style={{ margin: "20px 0px", backgroundColor: colors.textSecondary }}
+          style={{
+            margin: "20px 0px",
+            backgroundColor: themeData.textSecondary,
+          }}
         />
         <Grid
           style={{
@@ -53,7 +57,7 @@ function Footer(props) {
           }}
         >
           <Typography
-            style={{ color: colors.white, fontSize: 16, fontWeight: 700 }}
+            style={{ color: themeData.white, fontSize: 16, fontWeight: 700 }}
           >
             Copyright © 2024 All rights reserved
           </Typography>

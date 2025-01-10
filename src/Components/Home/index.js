@@ -2,29 +2,31 @@ import { Avatar, Link, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import React from "react";
 import useStyles from "./styles";
-import { colors } from "../../Config/theme";
 import Typewriter from "../TypeWriter";
 import { Facebook, Instagram, LinkedIn } from "@mui/icons-material";
 import Images from "../../Config/images";
 import XIcon from "@mui/icons-material/X";
 import { services } from "../../Config/static_data";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  const className = useStyles();
+  const { themeData } = useSelector((state) => state.auth);
+  const className = useStyles(themeData)();
   return (
     <Grid container className={className.container}>
       <Grid size={{ xs: 11, md: 9 }} className={className.section}>
         <Grid size={8}>
           {/* <Typography variant="h1">Hi, I'm Jayesh Jadav</Typography> */}
           <Typography variant="h1">
-            Hi, I'm <span style={{ color: colors.primary }}>Jayesh Jadav</span>{" "}
-            👋
+            Hi, I'm{" "}
+            <span style={{ color: themeData.primary }}>Jayesh Jadav</span>
           </Typography>
           <div id="typeWriter">
             <Typography
               variant="title"
               style={{
-                color: colors.primary,
+                color: themeData.primary,
+                margin: "20px 0px",
               }}
             >
               <Typewriter

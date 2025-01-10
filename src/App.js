@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import Header from "./Components/Header";
-import { colors } from "./Config/theme";
 import Home from "./Components/Home";
 import Footer from "./Components/Footer";
-import Services from "./Components/Services";
 import Skills from "./Components/Skills";
 import Contact from "./Components/Contact";
 import Experience from "./Components/Experience";
 import Projects from "./Components/Projects";
+import { useSelector } from "react-redux";
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
-
+  const { themeData } = useSelector((state) => state.auth);
   // Handle smooth scrolling to the clicked section
   const handleScrollToSection = (event, newValue) => {
     const section = document.getElementById(newValue);
@@ -67,7 +66,7 @@ function App() {
   return (
     <div
       style={{
-        backgroundColor: colors.background,
+        backgroundColor: themeData.background,
         position: "relative",
       }}
     >
@@ -75,7 +74,7 @@ function App() {
         style={{
           top: 0,
           position: "sticky",
-          backgroundColor: colors.primary,
+          backgroundColor: themeData.primary,
           zIndex: 1000,
         }}
       >
@@ -90,9 +89,6 @@ function App() {
         <section id="home">
           <Home />
         </section>
-        {/* <section id="services">
-          <Services />
-        </section> */}
         <section id="skills">
           <Skills />
         </section>
@@ -105,14 +101,6 @@ function App() {
         <section id="contact">
           <Contact />
         </section>
-
-        {/* 
-        <section id="project">
-          <Projects />
-        </section>
-        <section id="resume">
-          <Resume />
-        </section>*/}
       </main>
       <footer>
         <Footer

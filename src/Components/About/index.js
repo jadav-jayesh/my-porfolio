@@ -8,9 +8,10 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { colors } from "../../Config/theme";
+import { useSelector } from "react-redux";
 
 function About(props) {
+  const { themeData } = useSelector((state) => state.auth);
   const { handleChange } = props;
   const className = useStyles();
   return (
@@ -21,7 +22,8 @@ function About(props) {
       </Grid2> */}
       <Grid2 item size={8}>
         <Typography variant="h1" gutterBottom>
-          Hi, I'm <span style={{ color: colors.primary }}>Jayesh Jadav</span> 👋
+          Hi, I'm <span style={{ color: themeData.primary }}>Jayesh Jadav</span>{" "}
+          👋
         </Typography>
         <Typography variant="subText" style={{ marginBottom: "1rem" }}>
           I’m a frontend developer specializing in React, JavaScript, and
