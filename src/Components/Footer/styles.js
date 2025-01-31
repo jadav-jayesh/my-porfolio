@@ -7,13 +7,13 @@ const useStyles = (themeData) =>
       gap: 20,
     },
     iconButton: {
-      display: "flex",
+      display: "flex !important",
       alignItems: "center !important",
       height: 40,
       width: 40,
       borderRadius: "50px",
       backgroundColor: themeData.white,
-      color: themeData.primary,
+      color: `${themeData.primary} !important`,
       fontWeight: 700,
       transition: "all 0.5s ease-out !important",
       overflow: "hidden",
@@ -42,7 +42,7 @@ const useStyles = (themeData) =>
     },
     socialText: {
       display: "none !important",
-      color: `${themeData.black} !important`,
+      color: `${themeData.primary} !important`,
     },
 
     arrow: {

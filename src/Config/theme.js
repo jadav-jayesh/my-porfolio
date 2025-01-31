@@ -17,19 +17,19 @@ export const colors = {
   headerText: "#005653",
 };
 export const darkColors = {
-  primary: "#2A363B", // Slightly lighter green for primary
-  black: "#0a0a0a", // Text color for contrast on dark backgrounds
-  hoverColor: "#1E1E1E", // Lighter hover color for interactivity
-  secondary: "#2A363B", // Muted dark tone for secondary elements
-  accent: "#1E90FF", // Keeping the same accent for vibrancy
-  background: "#121212", // Deep dark background
+  primary: "#2A363B",
+  black: "#0a0a0a",
+  hoverColor: "#1E1E1E",
+  secondary: "#2A363B",
+  accent: "#1E90FF",
+  background: "#121212",
   input: "#F9F9F9",
-  text: "#E0E0E0", // Light text for readability
-  textSecondary: "#B0B0B0", // Slightly dimmer text for secondary content
-  white: "#FFFFFF", // Retaining true white for highlights
-  transparent: "#00000000", // Transparent black
-  chipShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.79)", // Adjusted for dark theme
-  shadow: "0px 4px 6px 2px rgba(0, 0, 0, 0.5)", // Darker shadow effect
+  text: "#E0E0E0",
+  textSecondary: "#B0B0B0",
+  white: "#FFFFFF",
+  transparent: "#00000000",
+  chipShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.79)",
+  shadow: "0px 4px 6px 2px rgba(0, 0, 0, 0.5)",
   headerText: "#FFFFFF",
   borderColor: "#292929",
 };

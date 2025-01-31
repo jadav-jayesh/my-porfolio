@@ -50,8 +50,8 @@ const Home = () => {
             <Typography variant="head">Find me on</Typography>
             <Grid className={className.socialContainer}>
               <Link
-                href="#"
-                // target="_blank"
+                href="https://www.instagram.com/jadavjayesh16?igsh=MWhrb3BjZDYwbTllcQ=="
+                target="_blank"
                 className={className.iconButton}
               >
                 <Instagram className={className.socialIcon} />
@@ -59,24 +59,36 @@ const Home = () => {
                   Instagram
                 </Typography>
               </Link>
-              <div className={className.iconButton}>
+              <Link
+                href="https://www.facebook.com/share/162es1DTNE/"
+                target="_blank"
+                className={className.iconButton}
+              >
                 <Facebook className={className.socialIcon} />
                 <Typography variant="subTitle" className={className.socialText}>
                   Facebook
                 </Typography>
-              </div>
-              <div className={className.iconButton}>
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/jayesh-jadav-809570222"
+                target="_blank"
+                className={className.iconButton}
+              >
                 <LinkedIn className={className.socialIcon} />
                 <Typography variant="subTitle" className={className.socialText}>
-                  Inked In
+                  Linked In
                 </Typography>
-              </div>
-              <div className={className.iconButton}>
+              </Link>
+              <Link
+                href="https://x.com/JadavJayeshSur3?t=D6VypV7GKwND01eWK9FsUA&s=08"
+                target="_blank"
+                className={className.iconButton}
+              >
                 <XIcon className={className.socialIcon} />
                 <Typography variant="subTitle" className={className.socialText}>
                   Twitter
                 </Typography>
-              </div>
+              </Link>
             </Grid>
           </div>
           <div className={className.workContainer}>

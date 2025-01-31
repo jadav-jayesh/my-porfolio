@@ -117,6 +117,7 @@ const useStyles = (themeData) =>
     },
     socialText: {
       display: "none !important",
+      color: `${themeData.white} !important`,
     },
     subText: {
       margin: "10px 0px",

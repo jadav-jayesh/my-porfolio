@@ -1,4 +1,4 @@
-import { Divider, IconButton, Typography } from "@mui/material";
+import { Divider, IconButton, Link, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import React from "react";
 import {
@@ -62,33 +62,46 @@ function Footer(props) {
             Copyright © 2024 All rights reserved
           </Typography>
           <Grid className={classes.socialContainer}>
-            <div className={classes.iconButton}>
+            <Link
+              href="https://www.instagram.com/jadavjayesh16?igsh=MWhrb3BjZDYwbTllcQ=="
+              target="_blank"
+              className={classes.iconButton}
+            >
               <Instagram className={classes.socialIcon} />
               <Typography variant="subTitle" className={classes.socialText}>
                 Instagram
               </Typography>
-            </div>
-            <div className={classes.iconButton}>
+            </Link>
+            <Link
+              href="https://www.facebook.com/share/162es1DTNE/"
+              target="_blank"
+              className={classes.iconButton}
+            >
               <Facebook className={classes.socialIcon} />
               <Typography variant="subTitle" className={classes.socialText}>
                 Facebook
               </Typography>
-            </div>
-            <div className={classes.iconButton}>
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/jayesh-jadav-809570222"
+              target="_blank"
+              className={classes.iconButton}
+            >
               <LinkedIn className={classes.socialIcon} />
               <Typography variant="subTitle" className={classes.socialText}>
                 Inked In
               </Typography>
-            </div>
-            <div className={classes.iconButton}>
-              <XIcon
-                // style={{ backgroundColor: "#1D1D1D" }}
-                className={classes.socialIcon}
-              />
+            </Link>
+            <Link
+              href="https://x.com/JadavJayeshSur3?t=D6VypV7GKwND01eWK9FsUA&s=08"
+              target="_blank"
+              className={classes.iconButton}
+            >
+              <XIcon className={classes.socialIcon} />
               <Typography variant="subTitle" className={classes.socialText}>
                 Twitter
               </Typography>
-            </div>
+            </Link>
           </Grid>
         </Grid>
       </Grid>
