@@ -1,10 +1,11 @@
-import { colors } from "../../../Config/theme";
+import { colors, darkColors } from "../../../Config/theme";
 import types from "./action";
 
+// Aurora Dark is the default first impression; toggle still switches to light.
 const initialState = {
   userdata: {},
-  themeData: colors,
-  switchBool: false,
+  themeData: darkColors,
+  switchBool: true,
 };
 
 export default function reducer(state = initialState, action) {

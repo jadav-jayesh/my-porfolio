@@ -9,25 +9,36 @@ import "react-vertical-timeline-component/style.min.css";
 import useStyles from "./styles";
 import AirplayOutlinedIcon from "@mui/icons-material/AirplayOutlined";
 import { useSelector } from "react-redux";
+import Eyebrow from "../Eyebrow";
 
 export default function Experience() {
   const { themeData } = useSelector((state) => state.auth);
   const className = useStyles(themeData)();
 
+  // Achievement-focused bullets (X-Y-Z / action-verb framing).
+  // TODO: swap the soft phrases for real numbers where you have them
+  // (e.g. "cut load time by X%", "used by X+ users") for maximum impact.
   const array = [
     {
       title: "Frontend Developer",
       company: "Groovy Technoweb",
-      description:
-        "I create and manage responsive user interfaces for company web applications using React.js and Redux. I develop cross-platform mobile apps for iOS and Android with React Native, collaborating closely with UI/UX designers to implement design concepts into functional and visually appealing web pages. I work with backend developers to ensure seamless integration between front-end and back-end systems. Additionally, I optimize website and app performance to enhance loading speed and improve user experience across various devices.",
       date: "Aug 2022 - Present",
+      points: [
+        "Built and shipped responsive React.js + Redux web apps, turning UI/UX designs into production interfaces across multiple company products.",
+        "Developed cross-platform iOS & Android apps with React Native from a shared codebase, speeding up feature delivery.",
+        "Optimized front-end performance and load speed for a smoother experience on low-end devices.",
+        "Partnered with backend developers to integrate REST APIs and ensure reliable front-to-back data flow.",
+      ],
     },
     {
       title: "Intern Frontend Developer",
       company: "Groovy Technoweb",
-      description:
-        "As a frontend developer intern, I gained a strong foundation in HTML, CSS, JavaScript, React, and React Native. I also worked extensively with Material UI and Ant Design CSS frameworks. During my internship, I translated design mock-ups into interactive and responsive web applications, ensuring cross-browser compatibility and adhering to best practices in web development.",
       date: "Feb 2022 - Aug 2022",
+      points: [
+        "Built a strong foundation in HTML, CSS, JavaScript, React and React Native over a 6-month intensive internship.",
+        "Converted design mock-ups into interactive, responsive web apps with full cross-browser compatibility.",
+        "Shipped polished, component-driven UIs using Material UI and Ant Design.",
+      ],
     },
   ];
 
@@ -35,6 +46,7 @@ export default function Experience() {
     <Grid container className={className.container}>
       <Grid size={{ xs: 11, md: 9 }}>
         <Grid style={{ textAlign: "center", marginBottom: 30 }}>
+          <Eyebrow index="02" label="Career Journey" />
           <Typography variant="title" style={{ color: themeData.headerText }}>
             Experiences
           </Typography>
@@ -47,12 +59,16 @@ export default function Experience() {
                 date={item?.date}
                 icon={<AirplayOutlinedIcon />}
                 iconStyle={{
-                  background: themeData.white,
-                  color: themeData.black,
+                  background: themeData.gradient,
+                  color: themeData.white,
+                  boxShadow: `0 0 0 4px ${themeData.glow}`,
                 }}
                 contentStyle={{
                   backgroundColor: themeData.primary,
                   color: themeData.white,
+                  border: `1px solid ${themeData.glassBorder}`,
+                  borderRadius: 14,
+                  boxShadow: themeData.shadow,
                 }}
                 dateClassName={className.date}
                 contentArrowStyle={{
@@ -68,12 +84,26 @@ export default function Experience() {
                 >
                   {item?.company}
                 </Typography>
-                <Typography
-                  variant="subText"
-                  style={{ color: themeData.white }}
-                >
-                  {item?.description}
-                </Typography>
+                <ul style={{ margin: "8px 0 0", paddingLeft: 18 }}>
+                  {item?.points?.map((point, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        color: themeData.white,
+                        marginBottom: 6,
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      <Typography
+                        variant="subText"
+                        component="span"
+                        style={{ color: themeData.white }}
+                      >
+                        {point}
+                      </Typography>
+                    </li>
+                  ))}
+                </ul>
               </VerticalTimelineElement>
             );
           })}

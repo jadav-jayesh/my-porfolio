@@ -57,6 +57,7 @@ const TypewriterEffect = ({
     onComplete,
     infinite,
     isArray,
+    speed,
   ]);
 
   return (

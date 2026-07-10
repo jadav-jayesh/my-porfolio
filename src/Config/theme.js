@@ -13,25 +13,48 @@ export const colors = {
   white: "#FFFFFF",
   transparent: "#ffffff00",
   chipShadow: "0px 0px 5px 0px rgba(199,199,199,0.79)",
-  shadow: "0px 4px 6px 2px rgba(0, 0, 0, 0.1)",
+  shadow: "0px 10px 30px -12px rgba(0, 86, 83, 0.25)",
   headerText: "#005653",
+  // --- modern polish tokens ---
+  gradient: "linear-gradient(120deg, #005653 0%, #00a19d 100%)",
+  glow: "rgba(0, 86, 83, 0.35)",
+  surface: "#ffffff",
+  surfaceAlt: "#f2f8f7",
+  glassBg: "rgba(255, 255, 255, 0.72)",
+  glassBorder: "rgba(0, 86, 83, 0.12)",
+  heroGlow1: "rgba(0, 161, 157, 0.30)",
+  heroGlow2: "rgba(0, 86, 83, 0.22)",
+  heroGlow3: "rgba(59, 130, 246, 0.14)",
+  mono: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
 };
 export const darkColors = {
-  primary: "#2A363B",
+  // --- Aurora Dark identity ---
+  primary: "#0f1b1f", // deep teal-slate: header, timeline cards
   black: "#0a0a0a",
-  hoverColor: "#1E1E1E",
-  secondary: "#2A363B",
-  accent: "#1E90FF",
-  background: "#121212",
+  hoverColor: "#16323a",
+  secondary: "#122227",
+  accent: "#22d3ee", // cyan accent
+  background: "#070d10", // near-black teal base
   input: "#F9F9F9",
-  text: "#E0E0E0",
-  textSecondary: "#B0B0B0",
+  text: "#dce8e6",
+  textSecondary: "#89a19f",
   white: "#FFFFFF",
   transparent: "#00000000",
   chipShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.79)",
-  shadow: "0px 4px 6px 2px rgba(0, 0, 0, 0.5)",
+  shadow: "0px 18px 40px -18px rgba(0, 0, 0, 0.75)",
   headerText: "#FFFFFF",
-  borderColor: "#292929",
+  borderColor: "#1c2b30",
+  // --- modern polish tokens (aurora teal -> cyan) ---
+  gradient: "linear-gradient(120deg, #2dd4bf 0%, #22d3ee 100%)",
+  glow: "rgba(45, 212, 191, 0.38)",
+  surface: "#0f191d",
+  surfaceAlt: "#0b1417",
+  glassBg: "rgba(255, 255, 255, 0.045)",
+  glassBorder: "rgba(255, 255, 255, 0.10)",
+  heroGlow1: "rgba(34, 211, 238, 0.30)", // cyan
+  heroGlow2: "rgba(45, 212, 191, 0.26)", // teal
+  heroGlow3: "rgba(59, 130, 246, 0.20)", // blue
+  mono: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
 };
 
 export const FontFamily = {

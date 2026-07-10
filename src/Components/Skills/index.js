@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid2";
 import useStyles from "./styles";
 import { categoryLabels, skills } from "../../Config/static_data";
 import { useSelector } from "react-redux";
+import Eyebrow from "../Eyebrow";
 
 function Skills() {
   const { themeData } = useSelector((state) => state.auth);
@@ -57,6 +58,7 @@ function Skills() {
     <Grid container className={className.container}>
       <Grid size={{ xs: 11, md: 9 }}>
         <Grid className={className.mainHeader}>
+          <Eyebrow index="01" label="Tech Stack" />
           <Typography variant="title" style={{ color: themeData.headerText }}>
             Skills
           </Typography>

@@ -1,13 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
 body {
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
+  /* Aurora Dark base prevents a white flash before React mounts */
+  background: #070d10;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Drifting aurora blobs behind the hero */
+@keyframes auroraDrift1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(60px, 40px) scale(1.15);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes auroraDrift2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-50px, -30px) scale(1.2);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes auroraDrift3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(30px, -50px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* offset anchored sections so the sticky header never covers them */
+  scroll-padding-top: 90px;
+}
+
+/* Branded text selection */
+::selection {
+  background: #005653;
+  color: #ffffff;
+}
+
+/* Slim, branded scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #00807c;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #005653;
+}
+
+/* Visible keyboard focus for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #00a19d;
+  outline-offset: 2px;
+}
+
+/* Infinite tech marquee */
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marqueeScroll 28s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Hide native cursor when the animated custom cursor is active (desktop only) */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* ...but keep the simple pointer hand on clickable items for clear affordance */
+.custom-cursor-active a,
+.custom-cursor-active button,
+.custom-cursor-active [role="button"],
+.custom-cursor-active .MuiButtonBase-root,
+.custom-cursor-active .MuiTab-root,
+.custom-cursor-active label[for],
+.custom-cursor-active select,
+.custom-cursor-active [onclick],
+.custom-cursor-active .cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* text cursor on text fields */
+.custom-cursor-active input,
+.custom-cursor-active textarea {
+  cursor: text !important;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

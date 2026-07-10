@@ -13,10 +13,11 @@ import { Setting } from "../../Utils/setting";
 import SendIcon from "@mui/icons-material/Send";
 import emailjs from "emailjs-com";
 import { useSelector } from "react-redux";
+import Eyebrow from "../Eyebrow";
 
 function Contact() {
   const { themeData } = useSelector((state) => state.auth);
-  const className = useStyles();
+  const className = useStyles(themeData)();
   const { email_regex, phone_regex } = Setting.JS_Regex;
   const [formValues, setFormValues] = useState({
     name: "",
@@ -101,13 +102,11 @@ function Contact() {
     <Grid container className={className.container}>
       <Grid size={{ xs: 11, md: 10 }}>
         <Grid style={{ textAlign: "center" }}>
-          <Typography variant="title" style={{ color: themeData.headerText }}>
-            Contact
-          </Typography>
+          <Eyebrow index="04" label="Get In Touch" />
           <Typography variant="h1">Contact With Me</Typography>
         </Grid>
         <Grid className={className.section}>
-          <Grid size={{ xs: 11, md: 9 }}>
+          <Grid size={{ xs: 11, md: 9 }} className={className.formCard}>
             <form onSubmit={handleSubmit} noValidate>
               <Grid style={{ display: "flex", flexWrap: "wrap" }} gap={2}>
                 {/* Name Field */}

@@ -1,0 +1,77 @@
+import React from "react";
+import { useSelector } from "react-redux";
+
+const TECH = [
+  "React",
+  "React Native",
+  "Redux",
+  "JavaScript",
+  "TypeScript",
+  "Next.js",
+  "Material UI",
+  "HTML5",
+  "CSS3",
+  "Git",
+  "Firebase",
+  "REST APIs",
+];
+
+/**
+ * Infinite horizontal marquee of the tech stack. The item list is rendered
+ * twice back-to-back so the CSS translateX(-50%) loop is seamless.
+ * Pauses on hover; the animation is disabled for reduced-motion users via CSS.
+ */
+const Marquee = () => {
+  const { themeData } = useSelector((state) => state.auth);
+  const loop = [...TECH, ...TECH];
+
+  return (
+    <div
+      style={{
+        borderTop: `1px solid ${themeData.glassBorder}`,
+        borderBottom: `1px solid ${themeData.glassBorder}`,
+        background: themeData.surfaceAlt,
+        overflow: "hidden",
+        padding: "18px 0",
+        maskImage:
+          "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+        WebkitMaskImage:
+          "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+      }}
+    >
+      <div className="marquee-track" style={{ display: "flex", width: "max-content" }}>
+        {loop.map((tech, i) => (
+          <span
+            key={i}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 22,
+              padding: "0 22px",
+              fontFamily: themeData.mono,
+              fontSize: 20,
+              fontWeight: 600,
+              letterSpacing: "1px",
+              whiteSpace: "nowrap",
+              color: themeData.text,
+            }}
+          >
+            {tech}
+            <span
+              aria-hidden="true"
+              style={{
+                width: 7,
+                height: 7,
+                borderRadius: "50%",
+                background: themeData.gradient,
+                display: "inline-block",
+              }}
+            />
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Marquee;

@@ -6,6 +6,9 @@ import Skills from "./Components/Skills";
 import Contact from "./Components/Contact";
 import Experience from "./Components/Experience";
 import Projects from "./Components/Projects";
+import CustomCursor from "./Components/CustomCursor";
+import Marquee from "./Components/Marquee";
+import Reveal from "./Components/Reveal";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -67,9 +70,13 @@ function App() {
     <div
       style={{
         backgroundColor: themeData.background,
+        // faint grid texture for signature depth (shows through transparent hero)
+        backgroundImage: `linear-gradient(${themeData.glassBorder} 1px, transparent 1px), linear-gradient(90deg, ${themeData.glassBorder} 1px, transparent 1px)`,
+        backgroundSize: "46px 46px",
         position: "relative",
       }}
     >
+      <CustomCursor />
       <header
         style={{
           top: 0,
@@ -89,17 +96,26 @@ function App() {
         <section id="home">
           <Home />
         </section>
+        <Marquee />
         <section id="skills">
-          <Skills />
+          <Reveal>
+            <Skills />
+          </Reveal>
         </section>
         <section id="experience">
-          <Experience />
+          <Reveal>
+            <Experience />
+          </Reveal>
         </section>
         <section id="project">
-          <Projects />
+          <Reveal>
+            <Projects />
+          </Reveal>
         </section>
         <section id="contact">
-          <Contact />
+          <Reveal>
+            <Contact />
+          </Reveal>
         </section>
       </main>
       <footer>

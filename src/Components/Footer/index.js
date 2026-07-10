@@ -4,6 +4,7 @@ import React from "react";
 import {
   ArrowUpward,
   Facebook,
+  GitHub,
   Instagram,
   LinkedIn,
 } from "@mui/icons-material";
@@ -59,9 +60,30 @@ function Footer(props) {
           <Typography
             style={{ color: themeData.white, fontSize: 16, fontWeight: 700 }}
           >
-            Copyright © 2024 All rights reserved
+            Copyright © {new Date().getFullYear()} Jayesh Jadav. All rights
+            reserved
           </Typography>
           <Grid className={classes.socialContainer}>
+            <Link
+              href="https://github.com/jayesh-jadav"
+              target="_blank"
+              className={classes.iconButton}
+            >
+              <GitHub className={classes.socialIcon} />
+              <Typography variant="subTitle" className={classes.socialText}>
+                GitHub
+              </Typography>
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/jayesh-jadav-809570222"
+              target="_blank"
+              className={classes.iconButton}
+            >
+              <LinkedIn className={classes.socialIcon} />
+              <Typography variant="subTitle" className={classes.socialText}>
+                LinkedIn
+              </Typography>
+            </Link>
             <Link
               href="https://www.instagram.com/jadavjayesh16?igsh=MWhrb3BjZDYwbTllcQ=="
               target="_blank"
@@ -80,16 +102,6 @@ function Footer(props) {
               <Facebook className={classes.socialIcon} />
               <Typography variant="subTitle" className={classes.socialText}>
                 Facebook
-              </Typography>
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/jayesh-jadav-809570222"
-              target="_blank"
-              className={classes.iconButton}
-            >
-              <LinkedIn className={classes.socialIcon} />
-              <Typography variant="subTitle" className={classes.socialText}>
-                Inked In
               </Typography>
             </Link>
             <Link
