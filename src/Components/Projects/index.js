@@ -58,6 +58,22 @@ const projects = [
     github: "https://github.com/jayesh-jadav",
     live: "",
   },
+  {
+    name: "Gvoice",
+    description:
+      "AI Meeting Intelligence platform for Google Meet, Zoom & Teams — web and native (iOS/Android) apps. Auto-joins from your calendar, records and live-transcribes with speaker labels, then generates executive summaries, key moments, decisions, sentiment analysis and owned action items — with searchable recordings, exec-ready reports and data stored in your own Azure Blob Storage.",
+    technologies: ["React", "React Native", "TypeScript", "AI/LLM"],
+    github: "https://github.com/jayesh-jadav",
+    live: "https://gvoice.groovyweb.ai/",
+  },
+  {
+    name: "Gstride",
+    description:
+      "Enterprise workforce productivity monitoring platform with AI-powered time tracking, screenshot capture, productivity analytics, AI tool detection (17 tools), HRMS and multi-organization white-label support — built with a React dashboard, NestJS API and Electron desktop app.",
+    technologies: ["React", "NestJS", "TypeScript", "MySQL"],
+    github: "https://github.com/jayesh-jadav",
+    live: "https://gstride.ai/",
+  },
 ];
 
 const Projects = () => {
@@ -101,7 +117,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
               <Card
-                className={className.card}
+                className={`${className.card} project-card-border`}
                 onMouseMove={handleMove}
                 onMouseLeave={handleLeave}
               >

@@ -33,7 +33,7 @@ const Home = () => {
       <div className={className.auroraBlob3} aria-hidden="true" />
       <Grid size={{ xs: 11, md: 9 }} className={className.section}>
         <Grid size={8}>
-          <Eyebrow label="Front-End Developer · Available for hire" center={false} />
+          <Eyebrow label="Product-Focused Front-End Engineer · Available for hire" center={false} />
           <Typography variant="h1">
             Hi, I'm{" "}
             <span className={className.nameGradient}>Jayesh Jadav</span>
@@ -56,11 +56,11 @@ const Home = () => {
           </div>
           <div className={className.subText}>
             <Typography variant="subText">
-              Front-end developer with 2+ years building fast, responsive web
-              and mobile apps in React, React Native and Redux. I turn UI/UX
-              designs into clean, production-ready interfaces — with a focus on
-              performance, accessibility and the small details that make
-              products feel right.
+              Product-focused front-end engineer with 3.8+ years building fast,
+              responsive web and mobile apps with React, React Native and
+              Next.js — from UI/UX designs to production. I work across the
+              stack (APIs, databases, queues) and use AI-first workflows to
+              ship reliable, polished products faster.
             </Typography>
           </div>
           <div className={className.ctaContainer}>
@@ -145,12 +145,12 @@ const Home = () => {
           </div>
           <div className={className.workContainer}>
             <div className={className.card}>
-              <Typography variant="head">2+</Typography>
+              <Typography variant="head">3.8+</Typography>
               <Typography variant="subText">Years of experience</Typography>
             </div>
             <div className={className.card}>
-              <Typography variant="head">7+</Typography>
-              <Typography variant="subText">Numbers of project</Typography>
+              <Typography variant="head">8+</Typography>
+              <Typography variant="subText">Projects shipped</Typography>
             </div>
           </div>
         </Grid>

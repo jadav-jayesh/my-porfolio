@@ -4,16 +4,21 @@ import { useSelector } from "react-redux";
 const TECH = [
   "React",
   "React Native",
-  "Redux",
-  "JavaScript",
-  "TypeScript",
   "Next.js",
-  "Material UI",
-  "HTML5",
-  "CSS3",
-  "Git",
+  "TypeScript",
+  "Redux",
+  "Zustand",
+  "Node.js",
+  "SQL",
+  "Redis",
+  "BullMQ",
   "Firebase",
   "REST APIs",
+  "Material UI",
+  "Git",
+  "AI-Assisted Development",
+  "Claude",
+  "ChatGPT",
 ];
 
 /**

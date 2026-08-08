@@ -1,12 +1,12 @@
 {
   "short_name": "JJ",
-  "name": "Jayesh",
+  "name": "Jayesh Jadav",
   "display": "standalone",
-  "theme_color": "#3778C2",
-  "background_color": "#3778C2",
+  "theme_color": "#005653",
+  "background_color": "#005653",
   "start_url": "/",
   "scope": "/",
-  "description": "Portfolio",
+  "description": "Jayesh Jadav — product-focused front-end engineer building fast, responsive apps with React, React Native and Next.js.",
   "icons": [
     {
       "src": "favicon.ico",

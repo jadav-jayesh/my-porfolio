@@ -103,7 +103,7 @@ function Contact() {
       <Grid size={{ xs: 11, md: 10 }}>
         <Grid style={{ textAlign: "center" }}>
           <Eyebrow index="04" label="Get In Touch" />
-          <Typography variant="h1">Contact With Me</Typography>
+          <Typography variant="h1">Let's Connect</Typography>
         </Grid>
         <Grid className={className.section}>
           <Grid size={{ xs: 11, md: 9 }} className={className.formCard}>

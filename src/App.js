@@ -31,12 +31,10 @@ function App() {
     const handleScroll = () => {
       const sections = [
         "home",
-        "about",
-        "services",
         "skills",
-        "resume",
-        "contact",
         "experience",
+        "project",
+        "contact",
       ];
       const offset = 150;
 
