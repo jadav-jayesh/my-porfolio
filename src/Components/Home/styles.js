@@ -79,17 +79,22 @@ const useStyles = (themeData) =>
       padding: 5,
       borderRadius: "50%",
       zIndex: 1,
-      "&::before": {
-        content: '""',
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        borderRadius: "50%",
-        boxShadow: `0px 0px 30px 10px ${themeData.primary}`,
-        animation: "$rotateShadowEffect 5s linear infinite",
-        zIndex: -1,
+      // gradient ring visible around the avatar via the padding gap
+      background: themeData.gradient,
+      animation: "$breathe 4s ease-in-out infinite",
+      "& .MuiAvatar-root": {
+        position: "relative",
+        zIndex: 1,
+        display: "block",
+        boxShadow: `inset 0 0 0 4px ${themeData.background}`,
+      },
+    },
+    "@keyframes breathe": {
+      "0%, 100%": {
+        boxShadow: `0 0 22px 2px ${themeData.glow}`,
+      },
+      "50%": {
+        boxShadow: `0 0 46px 10px ${themeData.glow}`,
       },
     },
     img: {
@@ -100,23 +105,6 @@ const useStyles = (themeData) =>
       "@media (max-width:900px)": {
         minHeight: "40vw", // Adjust the size as per your requirement
         minWidth: "40vw",
-      },
-    },
-    "@keyframes rotateShadowEffect": {
-      "0%": {
-        boxShadow: `10px 0px 30px 10px ${themeData.primary}`,
-      },
-      "25%": {
-        boxShadow: `0px 10px 30px 10px ${themeData.primary}`,
-      },
-      "50%": {
-        boxShadow: `-10px 0px 30px 10px ${themeData.primary}`,
-      },
-      "75%": {
-        boxShadow: `0px -10px 30px 10px ${themeData.primary}`,
-      },
-      "100%": {
-        boxShadow: `10px 0px 30px 10px ${themeData.primary}`,
       },
     },
     ctaContainer: {
