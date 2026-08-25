@@ -3,13 +3,14 @@ import { makeStyles } from "@mui/styles";
 const useStyles = (themeData) =>
   makeStyles(() => ({
     container: {
-      padding: "110px 0px 90px",
+      padding: "100px 24px 80px",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       position: "relative",
       overflow: "hidden",
-      // drifting aurora glow blobs behind the hero
+      width: "100%",
+      maxWidth: "100%",
       "&::before": {
         content: '""',
         position: "absolute",
@@ -63,31 +64,54 @@ const useStyles = (themeData) =>
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      gap: 50,
+      gap: "40px",
       position: "relative",
       zIndex: 1,
-      "@media (max-width:900px)": {
-        flexWrap: "wrap",
-        alignItems: "center",
+      maxWidth: "1200px",
+      width: "100%",
+      margin: "0 auto",
+      "@media (max-width:960px)": {
         flexDirection: "column-reverse",
         textAlign: "center",
+        gap: "32px",
+      },
+    },
+    contentLeft: {
+      flex: "1 1 580px",
+      maxWidth: "680px",
+      "@media (max-width:960px)": {
+        maxWidth: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      },
+    },
+    mainHeading: {
+      fontSize: "clamp(32px, 5vw, 54px) !important",
+      fontWeight: "700 !important",
+      lineHeight: "1.15 !important",
+      marginTop: "8px !important",
+    },
+    typeWriterWrapper: {
+      minHeight: "44px",
+      display: "flex",
+      alignItems: "center",
+      margin: "12px 0px 16px",
+      "@media (max-width:960px)": {
+        justifyContent: "center",
       },
     },
     borderWrapper: {
-      display: "inline-block",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       position: "relative",
-      padding: 5,
+      padding: 6,
       borderRadius: "50%",
       zIndex: 1,
-      // gradient ring visible around the avatar via the padding gap
       background: themeData.gradient,
       animation: "$breathe 4s ease-in-out infinite",
-      "& .MuiAvatar-root": {
-        position: "relative",
-        zIndex: 1,
-        display: "block",
-        boxShadow: `inset 0 0 0 4px ${themeData.background}`,
-      },
+      flexShrink: 0,
     },
     "@keyframes breathe": {
       "0%, 100%": {
@@ -99,12 +123,13 @@ const useStyles = (themeData) =>
     },
     img: {
       borderRadius: "50%",
-      minHeight: "30vw", // Adjust the size as per your requirement
-      minWidth: "30vw",
+      width: "clamp(220px, 24vw, 320px) !important",
+      height: "clamp(220px, 24vw, 320px) !important",
       display: "block",
-      "@media (max-width:900px)": {
-        minHeight: "40vw", // Adjust the size as per your requirement
-        minWidth: "40vw",
+      backgroundColor: themeData.surface,
+      boxShadow: `inset 0 0 0 4px ${themeData.background}`,
+      "& img": {
+        objectFit: "cover",
       },
     },
     ctaContainer: {
@@ -112,7 +137,7 @@ const useStyles = (themeData) =>
       flexWrap: "wrap",
       gap: 15,
       marginTop: 25,
-      "@media (max-width:900px)": {
+      "@media (max-width:960px)": {
         justifyContent: "center",
       },
     },
@@ -127,15 +152,20 @@ const useStyles = (themeData) =>
       },
     },
     socialMain: {
-      margin: "20px 0px",
+      margin: "24px 0px 16px",
+      "@media (max-width:960px)": {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      },
     },
     socialContainer: {
       display: "flex",
-      gap: 20,
-      marginTop: 5,
-      "@media (max-width:900px)": {
+      gap: 16,
+      marginTop: 8,
+      "@media (max-width:960px)": {
         justifyContent: "center",
-        gap: 10,
+        flexWrap: "wrap",
       },
     },
     iconButton: {
@@ -147,47 +177,54 @@ const useStyles = (themeData) =>
       color: `${themeData.white} !important`,
       fontWeight: 700,
       backgroundColor: themeData.primary,
-      transition: "all 0.5s ease-out !important",
+      transition: "all 0.4s ease-out !important",
       boxShadow: themeData.chipShadow,
       overflow: "hidden",
       "&:hover": {
-        width: "150px !important",
+        width: "140px !important",
         "& $socialText": {
           display: "block !important",
         },
       },
       "@media (hover: none)": {
         "&:hover": {
-          width: "40px !important", // Keep original size
+          width: "40px !important",
           "& $socialText": {
-            display: "none", // Hide text on touch devices
+            display: "none",
           },
         },
       },
     },
     socialIcon: {
-      transition: "linear 0.5s !important",
-      float: "left",
-      margin: 10,
+      transition: "linear 0.4s !important",
+      margin: "0 10px",
       borderRadius: 50,
       height: "20px !important",
       width: "20px !important",
-      alignItem: "center",
       color: themeData.white,
+      flexShrink: 0,
     },
     socialText: {
       display: "none !important",
       color: `${themeData.white} !important`,
+      whiteSpace: "nowrap",
+      fontSize: "13px !important",
+      paddingRight: "10px",
     },
     subText: {
-      margin: "10px 0px",
+      margin: "12px 0px",
+      maxWidth: "600px",
+      lineHeight: "1.6",
+      "& .MuiTypography-root": {
+        lineHeight: "1.6 !important",
+      },
     },
     workContainer: {
       display: "flex",
       alignItems: "center",
       gap: 20,
       marginTop: 28,
-      "@media (max-width:900px)": {
+      "@media (max-width:960px)": {
         justifyContent: "center",
       },
     },

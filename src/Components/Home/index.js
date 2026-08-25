@@ -1,5 +1,4 @@
 import { Avatar, Button, Link, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid2";
 import React from "react";
 import useStyles from "./styles";
 import Typewriter from "../TypeWriter";
@@ -29,26 +28,27 @@ const Home = () => {
   };
 
   return (
-    <Grid container className={className.container}>
+    <div className={className.container}>
       <div className={className.auroraBlob3} aria-hidden="true" />
-      <Grid size={{ xs: 11, md: 9 }} className={className.section}>
-        <Grid size={8}>
+      <div className={className.section}>
+        <div className={className.contentLeft}>
           <Eyebrow label="Product-Focused Front-End Engineer · Available for hire" center={false} />
-          <Typography variant="h1">
+          <Typography variant="h1" className={className.mainHeading}>
             Hi, I'm{" "}
             <span className={className.nameGradient}>Jayesh Jadav</span>
           </Typography>
-          <div id="typeWriter">
+          <div id="typeWriter" className={className.typeWriterWrapper}>
             <Typography
               variant="title"
               style={{
                 color: themeData.accent,
-                margin: "20px 0px",
+                lineHeight: 1.3,
+                fontSize: "clamp(20px, 3.5vw, 32px)",
               }}
             >
               <Typewriter
                 text={services}
-                delay={100}
+                delay={80}
                 infinite={true}
                 speed={2000}
               />
@@ -90,7 +90,7 @@ const Home = () => {
           </div>
           <div id="social" className={className.socialMain}>
             <Typography variant="head">Find me on</Typography>
-            <Grid className={className.socialContainer}>
+            <div className={className.socialContainer}>
               <Link
                 href="https://github.com/jayesh-jadav"
                 target="_blank"
@@ -141,7 +141,7 @@ const Home = () => {
                   Twitter
                 </Typography>
               </Link>
-            </Grid>
+            </div>
           </div>
           <div className={className.workContainer}>
             <div className={className.card}>
@@ -153,12 +153,12 @@ const Home = () => {
               <Typography variant="subText">Projects shipped</Typography>
             </div>
           </div>
-        </Grid>
-        <div className={className.borderWrapper}>
-          <Avatar src={Images.profile} className={className.img} />
         </div>
-      </Grid>
-    </Grid>
+        <div className={className.borderWrapper}>
+          <Avatar src={Images.profile} alt="Jayesh Jadav" className={className.img} />
+        </div>
+      </div>
+    </div>
   );
 };
 

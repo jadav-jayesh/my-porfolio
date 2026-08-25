@@ -1,23 +1,22 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-const TRAIL = 14;
-
 /**
- * Gradient trail-streak cursor:
- * - A head dot + a fading streak that follows the pointer's actual path
- *   (each frame the newest point is pushed, oldest dropped).
- * - Uses the theme gradient (teal -> cyan), fading in size and opacity.
- * Native cursor is hidden while active. Skipped on pure-touch / reduced-motion.
+ * Minimalist Smooth Custom Cursor:
+ * - A sharp 6px center dot snapping to pointer
+ * - An elegant 32px smooth lagging ring with lerp interpolation
+ * - Smooth expansion effect over clickable elements (links, buttons)
+ * - Auto-disabled on mobile / touch / reduced-motion devices
  */
 const CustomCursor = () => {
   const { themeData } = useSelector((state) => state.auth);
-  const headRef = useRef(null);
-  const trailRefs = useRef([]);
-  const path = useRef(
-    Array.from({ length: TRAIL }, () => ({ x: -100, y: -100 }))
-  );
-  const visible = useRef(0);
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const mousePos = useRef({ x: -100, y: -100 });
+  const ringPos = useRef({ x: -100, y: -100 });
   const rafId = useRef(null);
 
   useEffect(() => {
@@ -29,92 +28,98 @@ const CustomCursor = () => {
 
     document.body.classList.add("custom-cursor-active");
 
-    const onMove = (e) => {
-      visible.current = 1;
-      // shift the recorded path toward the newest pointer position
-      const p = path.current;
-      p.shift();
-      p.push({ x: e.clientX, y: e.clientY });
-    };
-    const onLeave = () => (visible.current = 0);
-    const onEnter = () => (visible.current = 1);
+    const onMouseMove = (e) => {
+      mousePos.current = { x: e.clientX, y: e.clientY };
+      setIsVisible(true);
 
-    const loop = () => {
-      const p = path.current;
-      for (let i = 0; i < TRAIL; i++) {
-        const el = trailRefs.current[i];
-        if (el) {
-          el.style.transform = `translate(${p[i].x}px, ${p[i].y}px) translate(-50%, -50%)`;
-          el.style.opacity = visible.current
-            ? String(Math.max(0, 1 - i / TRAIL))
-            : "0";
-        }
+      // Instant dot positioning
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
       }
-      const head = headRef.current;
-      if (head) {
-        head.style.transform = `translate(${p[TRAIL - 1].x}px, ${p[TRAIL - 1].y}px) translate(-50%, -50%)`;
-        head.style.opacity = visible.current ? "1" : "0";
-      }
-      rafId.current = requestAnimationFrame(loop);
+
+      // Check if hovering over clickable element
+      const target = e.target;
+      const isClickable =
+        target.closest("a, button, [role='button'], input, textarea, select, .MuiButtonBase-root, .cursor-pointer");
+      setIsHovered(Boolean(isClickable));
     };
 
-    rafId.current = requestAnimationFrame(loop);
-    window.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseleave", onLeave);
-    document.addEventListener("mouseenter", onEnter);
+    const onMouseLeave = () => setIsVisible(false);
+    const onMouseEnter = () => setIsVisible(true);
+
+    // Smooth Lerp loop for outer ring
+    const render = () => {
+      const ease = 0.18;
+      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * ease;
+      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * ease;
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0) translate(-50%, -50%)`;
+      }
+
+      rafId.current = requestAnimationFrame(render);
+    };
+
+    rafId.current = requestAnimationFrame(render);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    document.addEventListener("mouseleave", onMouseLeave);
+    document.addEventListener("mouseenter", onMouseEnter);
 
     return () => {
       document.body.classList.remove("custom-cursor-active");
-      window.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseleave", onLeave);
-      document.removeEventListener("mouseenter", onEnter);
-      cancelAnimationFrame(rafId.current);
+      window.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseleave", onMouseLeave);
+      document.removeEventListener("mouseenter", onMouseEnter);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const base = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    borderRadius: "50%",
-    pointerEvents: "none",
-    zIndex: 10000,
-    opacity: 0,
-    transform: "translate(-100px, -100px)",
-    willChange: "transform, opacity",
-  };
+  const accentColor = themeData?.accent || "#22d3ee";
 
   return (
     <>
-      {/* head dot */}
+      {/* Sharp Center Dot */}
       <div
-        ref={headRef}
+        ref={dotRef}
         aria-hidden="true"
         style={{
-          ...base,
-          width: 10,
-          height: 10,
-          background: themeData.gradient,
-          boxShadow: `0 0 12px ${themeData.accent}`,
-          transition: "opacity 120ms ease",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: isHovered ? 4 : 6,
+          height: isHovered ? 4 : 6,
+          backgroundColor: accentColor,
+          borderRadius: "50%",
+          pointerEvents: "none",
+          zIndex: 99999,
+          opacity: isVisible ? 1 : 0,
+          transform: "translate3d(-100px, -100px, 0) translate(-50%, -50%)",
+          transition: "width 0.2s ease, height 0.2s ease, opacity 0.2s ease",
+          willChange: "transform",
         }}
       />
-      {/* fading gradient streak along the recorded path */}
-      {Array.from({ length: TRAIL }).map((_, i) => (
-        <div
-          key={i}
-          ref={(el) => (trailRefs.current[i] = el)}
-          aria-hidden="true"
-          style={{
-            ...base,
-            width: 8 - i * 0.5,
-            height: 8 - i * 0.5,
-            background: themeData.gradient,
-            transition: "opacity 150ms ease",
-          }}
-        />
-      ))}
+
+      {/* Smooth Lagging Ring */}
+      <div
+        ref={ringRef}
+        aria-hidden="true"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: isHovered ? 46 : 30,
+          height: isHovered ? 46 : 30,
+          border: `1.5px solid ${accentColor}`,
+          backgroundColor: isHovered ? `${accentColor}18` : "transparent",
+          borderRadius: "50%",
+          pointerEvents: "none",
+          zIndex: 99998,
+          opacity: isVisible ? (isHovered ? 0.9 : 0.6) : 0,
+          transform: "translate3d(-100px, -100px, 0) translate(-50%, -50%)",
+          transition: "width 0.25s ease-out, height 0.25s ease-out, background-color 0.25s ease, opacity 0.2s ease, border-color 0.2s ease",
+          willChange: "transform",
+        }}
+      />
     </>
   );
 };

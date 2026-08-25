@@ -104,26 +104,13 @@ textarea:focus-visible {
   animation-play-state: paused;
 }
 
-/* Hide native cursor when the animated custom cursor is active (desktop only) */
+/* Hide native cursor when custom cursor is active on desktop */
 .custom-cursor-active,
 .custom-cursor-active * {
   cursor: none !important;
 }
 
-/* ...but keep the simple pointer hand on clickable items for clear affordance */
-.custom-cursor-active a,
-.custom-cursor-active button,
-.custom-cursor-active [role="button"],
-.custom-cursor-active .MuiButtonBase-root,
-.custom-cursor-active .MuiTab-root,
-.custom-cursor-active label[for],
-.custom-cursor-active select,
-.custom-cursor-active [onclick],
-.custom-cursor-active .cursor-pointer {
-  cursor: pointer !important;
-}
-
-/* text cursor on text fields */
+/* Allow text selection cursor inside inputs/textareas */
 .custom-cursor-active input,
 .custom-cursor-active textarea {
   cursor: text !important;
