@@ -123,8 +123,8 @@ const useStyles = (themeData) =>
     },
     img: {
       borderRadius: "50%",
-      width: "clamp(220px, 24vw, 320px) !important",
-      height: "clamp(220px, 24vw, 320px) !important",
+      width: "clamp(280px, 32vw, 420px) !important",
+      height: "clamp(280px, 32vw, 420px) !important",
       display: "block",
       backgroundColor: themeData.surface,
       boxShadow: `inset 0 0 0 4px ${themeData.background}`,

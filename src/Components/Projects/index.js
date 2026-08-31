@@ -14,12 +14,14 @@ import oculabsImg from "../../Assets/Images/Projects/oculabs.jpg";
 import boloImg from "../../Assets/Images/Projects/bolo_english.jpg";
 import reanloImg from "../../Assets/Images/Projects/reanlo.jpg";
 import npmImg from "../../Assets/Images/Projects/dropdown_picker.jpg";
+import saayamImg from "../../Assets/Images/Projects/saayam.jpg";
+import goraqtImg from "../../Assets/Images/Projects/goraqt.jpg";
 
 const filterCategories = [
-  { id: "all", label: "All Projects", count: 7, icon: <Apps fontSize="small" /> },
+  { id: "all", label: "All Projects", count: 9, icon: <Apps fontSize="small" /> },
   { id: "ai", label: "AI & Full-Stack", count: 3, icon: <SmartToy fontSize="small" /> },
-  { id: "react", label: "React & Next.js", count: 4, icon: <Code fontSize="small" /> },
-  { id: "mobile", label: "React Native", count: 3, icon: <PhoneIphone fontSize="small" /> },
+  { id: "react", label: "React & Next.js", count: 5, icon: <Code fontSize="small" /> },
+  { id: "mobile", label: "React Native & Mobile", count: 4, icon: <PhoneIphone fontSize="small" /> },
   { id: "oss", label: "Open Source", count: 1, icon: <Public fontSize="small" /> },
 ];
 
@@ -33,8 +35,32 @@ const projects = [
     technologies: ["React", "TypeScript", "Node.js", "BullMQ", "Redis", "Whisper AI", "Playwright"],
     image: gvoiceImg,
     badge: "AI Platform",
-    github: "https://github.com/jayesh-jadav/gvoice-meeting-intelligence",
+    github: "",
     live: "https://gvoice.groovyweb.ai/",
+  },
+  {
+    name: "GoRaqt — Racquet Sports Mobile App",
+    tagline: "Cross-Platform React Native App for Gear & Bookings",
+    category: ["all", "mobile"],
+    description:
+      "Cross-platform React Native mobile application connecting tennis and pickleball players to instant courtside gear checkout, live swing performance tracking, court reservations, and player matching.",
+    technologies: ["React Native", "TypeScript", "React Query", "Redux Toolkit", "REST APIs", "Mobile UI/UX"],
+    image: goraqtImg,
+    badge: "Mobile App",
+    github: "",
+    live: "https://goraqt.com/",
+  },
+  {
+    name: "Saayam — Social Impact & Relief",
+    tagline: "Community Crowdfunding & Transparent Giving Platform",
+    category: ["all", "react"],
+    description:
+      "Full-featured crowdfunding and disaster relief platform with verified campaign creation, Google Maps cause discovery, multi-gateway payments (Cashfree & Aautipay), and real-time beneficiary impact tracking.",
+    technologies: ["Next.js", "React", "TypeScript", "Redux", "Google Maps API", "Cashfree"],
+    image: saayamImg,
+    badge: "Production Platform",
+    github: "",
+    live: "https://staging.saayam.com/",
   },
   {
     name: "Gstride — Workforce Analytics",
@@ -45,7 +71,7 @@ const projects = [
     technologies: ["React", "TypeScript", "Redux", "NestJS", "MySQL", "Electron"],
     image: gstrideImg,
     badge: "Enterprise",
-    github: "https://github.com/jayesh-jadav",
+    github: "",
     live: "https://gstride.ai/",
   },
   {
@@ -69,7 +95,7 @@ const projects = [
     technologies: ["React.js", "Redux Toolkit", "Material-UI", "PWA", "Service Workers"],
     image: fleetImg,
     badge: "Production PWA",
-    github: "https://github.com/jayesh-jadav",
+    github: "",
     live: "",
   },
   {
@@ -81,7 +107,7 @@ const projects = [
     technologies: ["React.js", "React Native", "Material-UI", "REST APIs"],
     image: oculabsImg,
     badge: "Healthcare",
-    github: "https://github.com/jayesh-jadav",
+    github: "",
     live: "",
   },
   {
@@ -93,7 +119,7 @@ const projects = [
     technologies: ["React Native", "TypeScript", "npm Package", "Open Source"],
     image: npmImg,
     badge: "Open Source",
-    github: "https://github.com/jayesh-jadav",
+    github: "https://github.com/jayesh-jadav/rn-month-year-dropdown-picker",
     live: "https://www.npmjs.com/package/rn-month-year-dropdown-picker",
   },
   {
@@ -105,7 +131,7 @@ const projects = [
     technologies: ["React Native", "TypeScript", "AsyncStorage", "React Navigation"],
     image: reanloImg,
     badge: "Mobile App",
-    github: "https://github.com/jayesh-jadav",
+    github: "",
     live: "",
   },
 ];

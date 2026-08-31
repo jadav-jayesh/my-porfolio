@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Typography, LinearProgress } from "@mui/material";
+import React from "react";
+import { Typography, Chip } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import useStyles from "./styles";
 import { categoryLabels, skills } from "../../Config/static_data";
@@ -8,90 +8,79 @@ import Eyebrow from "../Eyebrow";
 
 function Skills() {
   const { themeData } = useSelector((state) => state.auth);
-  const [visible, setVisible] = useState(false);
-  const [progress, setProgress] = useState({});
   const className = useStyles(themeData)();
-
-  useEffect(() => {
-    const handleScroll = (entries) => {
-      if (entries[0].isIntersecting) {
-        setVisible(true);
-      }
-    };
-
-    const observer = new IntersectionObserver(handleScroll, {
-      threshold: 0.5,
-    });
-
-    const skillsSection = document.getElementById("skills");
-    if (skillsSection) {
-      observer.observe(skillsSection);
-    }
-
-    return () => {
-      if (skillsSection) observer.unobserve(skillsSection);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (visible) {
-      const interval = setInterval(() => {
-        setProgress((prevProgress) => {
-          const updatedProgress = { ...prevProgress };
-          Object.keys(skills).forEach((category) => {
-            skills[category].forEach((skill) => {
-              const current = updatedProgress[skill.name] || 0;
-              if (current < skill.level) {
-                updatedProgress[skill.name] = current + 1;
-              }
-            });
-          });
-          return updatedProgress;
-        });
-      }, 20);
-
-      return () => clearInterval(interval);
-    }
-  }, [visible]);
 
   return (
     <Grid container className={className.container}>
       <Grid size={{ xs: 11, md: 9 }}>
         <Grid className={className.mainHeader}>
-          <Eyebrow index="01" label="Tech Stack" />
+          <Eyebrow index="01" label="Tech Stack & Capabilities" />
           <Typography variant="title" style={{ color: themeData.headerText }}>
-            Skills
+            Production Skills & Tooling
+          </Typography>
+          <Typography
+            variant="subText"
+            style={{
+              maxWidth: 620,
+              margin: "8px auto 0",
+              color: themeData.textSecondary,
+            }}
+          >
+            Real-world capabilities built through 4+ years of shipping
+            production web, mobile, and AI applications.
           </Typography>
         </Grid>
         <Grid container className={className.cardContainer} spacing={3}>
-          {Object.keys(skills).map((category) => (
-            <Grid
-              className={className.card}
-              size={{ xs: 12, md: 6 }}
-              key={category}
-            >
-              <Typography className={className.cardHeader} variant="subTitle">
-                {categoryLabels[category]}
-              </Typography>
-              {skills[category].map((skill) => (
-                <Grid size={{ xs: 12 }} key={skill.name}>
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <Typography variant="tableTitle">{skill.name}</Typography>
-                    <Typography variant="tableTitle">
-                      {progress[skill.name] || 0}%
+          {Object.keys(skills).map((category) => {
+            const meta = categoryLabels[category] || {
+              title: category,
+              caption: "",
+            };
+            return (
+              <Grid
+                className={className.card}
+                size={{ xs: 12, md: 6 }}
+                key={category}
+              >
+                <div className={className.cardHeaderRow}>
+                  <Typography className={className.categoryTitle}>
+                    {meta.title}
+                  </Typography>
+                  {meta.caption && (
+                    <Typography className={className.categoryCaption}>
+                      {meta.caption}
                     </Typography>
-                  </div>
-                  <LinearProgress
-                    variant="determinate"
-                    value={progress[skill.name] || 0}
-                    className={className.progress}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          ))}
+                  )}
+                </div>
+                <div className={className.skillList}>
+                  {skills[category].map((skill) => (
+                    <div className={className.skillItem} key={skill.name}>
+                      <div className={className.skillTopRow}>
+                        <Typography className={className.skillName}>
+                          {skill.name}
+                        </Typography>
+                        <div className={className.badgeGroup}>
+                          <Chip
+                            label={skill.tier}
+                            size="small"
+                            className={className.tierBadge}
+                          />
+                          <Chip
+                            label={skill.experience}
+                            size="small"
+                            className={className.expBadge}
+                          />
+                        </div>
+                      </div>
+                      <Typography className={className.highlightText}>
+                        {skill.highlight}
+                      </Typography>
+                    </div>
+                  ))}
+                </div>
+              </Grid>
+            );
+          })}
         </Grid>
       </Grid>
     </Grid>
@@ -99,3 +88,4 @@ function Skills() {
 }
 
 export default Skills;
+

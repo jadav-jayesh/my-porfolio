@@ -8,42 +8,53 @@ import { useSelector } from "react-redux";
  */
 const Eyebrow = ({ index, label, center = true }) => {
   const { themeData } = useSelector((state) => state.auth);
+  const color =
+    themeData.headerText === "#FFFFFF"
+      ? themeData.accent || "#22d3ee"
+      : themeData.primary || "#005653";
+
   return (
     <div
       style={{
         display: "flex",
         alignItems: "center",
-        gap: 8,
         justifyContent: center ? "center" : "flex-start",
-        marginBottom: 10,
+        marginBottom: 14,
+        width: center ? "100%" : "auto",
       }}
     >
       <span
         style={{
-          fontFamily: themeData.mono,
-          fontSize: 13,
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 7,
+          fontFamily:
+            "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+          fontSize: 12,
           fontWeight: 600,
-          letterSpacing: "2px",
+          letterSpacing: "1px",
           textTransform: "uppercase",
-          background: themeData.gradient,
-          WebkitBackgroundClip: "text",
-          backgroundClip: "text",
-          WebkitTextFillColor: "transparent",
+          color: color,
+          padding: "4px 12px",
+          borderRadius: 20,
+          backgroundColor: `${color}18`,
+          border: `1px solid ${color}38`,
         }}
       >
-        {index ? `// ${index} — ` : "// "}
+        <span
+          aria-hidden="true"
+          style={{
+            width: 6,
+            height: 6,
+            borderRadius: "50%",
+            backgroundColor: color,
+            boxShadow: `0 0 6px ${color}`,
+            flexShrink: 0,
+          }}
+        />
+        {index ? `${index} // ` : ""}
         {label}
       </span>
-      <span
-        aria-hidden="true"
-        style={{
-          width: 40,
-          height: 2,
-          borderRadius: 2,
-          background: themeData.gradient,
-          opacity: 0.7,
-        }}
-      />
     </div>
   );
 };

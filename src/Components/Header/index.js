@@ -1,6 +1,7 @@
 import { Tab, Tabs, Drawer, IconButton, Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import React, { useState } from "react";
+import { flushSync } from "react-dom";
 import { Close, Menu } from "@mui/icons-material";
 import useStyles from "./styles";
 import { colors, darkColors } from "../../Config/theme";
@@ -27,14 +28,61 @@ const Header = (props) => {
     setDrawerOpen(open);
   };
 
-  // this function is used to handle switch changed
+  // this function is used to handle switch changed with ripple animation
   const handleSwitch = (e) => {
-    dispatch(setSwitchBool(e.target.checked));
-    if (e.target.checked) {
-      dispatch(setThemeData(darkColors));
-    } else {
-      dispatch(setThemeData(colors));
+    const nextChecked = e.target.checked;
+    const nextTheme = nextChecked ? darkColors : colors;
+
+    if (
+      !document.startViewTransition ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      dispatch(setSwitchBool(nextChecked));
+      dispatch(setThemeData(nextTheme));
+      return;
     }
+
+    const el = e.target.closest?.(".MuiSwitch-root") || e.target;
+    const rect = el?.getBoundingClientRect?.() || {
+      left: window.innerWidth / 2,
+      top: 0,
+      width: 0,
+      height: 0,
+    };
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    const right = window.innerWidth - x;
+    const bottom = window.innerHeight - y;
+    const maxRadius = Math.hypot(
+      Math.max(x, right),
+      Math.max(y, bottom)
+    );
+
+    const transition = document.startViewTransition(() => {
+      flushSync(() => {
+        dispatch(setSwitchBool(nextChecked));
+        dispatch(setThemeData(nextTheme));
+      });
+    });
+
+    transition.ready
+      .then(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${maxRadius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: 550,
+            easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+            pseudoElement: "::view-transition-new(root)",
+          }
+        );
+      })
+      .catch(() => {});
   };
 
   return (
