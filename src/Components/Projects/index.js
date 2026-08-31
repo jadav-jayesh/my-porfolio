@@ -1,100 +1,133 @@
-import React from "react";
-import { Card, CardActions, CardContent, Chip, Link, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Card, CardActions, CardContent, Chip, Link, Typography, Button } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { GitHub, Launch } from "@mui/icons-material";
+import { GitHub, Launch, Star, Code, SmartToy, PhoneIphone, Public, Apps } from "@mui/icons-material";
 
 import useStyles from "./styles";
 import { useSelector } from "react-redux";
 import Eyebrow from "../Eyebrow";
 
-// NOTE: `github` / `live` default to placeholders. Replace with each project's
-// real repo and live-demo URL. Leave `live` as "" to hide the Live Demo button.
+import gvoiceImg from "../../Assets/Images/Projects/gvoice.jpg";
+import gstrideImg from "../../Assets/Images/Projects/gstride.jpg";
+import fleetImg from "../../Assets/Images/Projects/fleet_kaptan.jpg";
+import oculabsImg from "../../Assets/Images/Projects/oculabs.jpg";
+import boloImg from "../../Assets/Images/Projects/bolo_english.jpg";
+import reanloImg from "../../Assets/Images/Projects/reanlo.jpg";
+import npmImg from "../../Assets/Images/Projects/dropdown_picker.jpg";
+
+const filterCategories = [
+  { id: "all", label: "All Projects", count: 7, icon: <Apps fontSize="small" /> },
+  { id: "ai", label: "AI & Full-Stack", count: 3, icon: <SmartToy fontSize="small" /> },
+  { id: "react", label: "React & Next.js", count: 4, icon: <Code fontSize="small" /> },
+  { id: "mobile", label: "React Native", count: 3, icon: <PhoneIphone fontSize="small" /> },
+  { id: "oss", label: "Open Source", count: 1, icon: <Public fontSize="small" /> },
+];
+
 const projects = [
   {
-    name: "Fleet Kaptan",
+    name: "Gvoice — AI Meeting Intelligence",
+    tagline: "Live Bot & Real-Time Transcription Platform",
+    category: ["all", "ai", "react"],
     description:
-      "Built a real-time fleet-tracking dashboard in React + Redux with live map monitoring, helping dispatchers optimize routes and cut idle vehicle time.",
-    technologies: ["React", "Redux", "Material-UI", "Firebase"],
-    github: "https://github.com/jayesh-jadav",
-    live: "",
-  },
-  {
-    name: "Oculabs",
-    description:
-      "Developed a healthcare analytics platform that turns raw clinical data into interactive dashboards, enabling faster, data-driven decisions for clinics.",
-    technologies: ["React", "Redux", "MUI", "Firebase"],
-    github: "https://github.com/jayesh-jadav",
-    live: "",
-  },
-  {
-    name: "Scrapc",
-    description:
-      "Engineered a data-scraping dashboard that collects, cleans and visualizes web data into filterable, exportable reports — replacing hours of manual work.",
-    technologies: ["React", "Redux", "MUI", "Firebase"],
-    github: "https://github.com/jayesh-jadav",
-    live: "",
-  },
-  {
-    name: "Reanlo for Readers",
-    description:
-      "Shipped a React Native reading app with book browsing, secure checkout and a personalized library, delivering a smooth cross-platform experience.",
-    technologies: ["React Native", "Firebase", "Redux"],
-    github: "https://github.com/jayesh-jadav",
-    live: "",
-  },
-  {
-    name: "Prarambh",
-    description:
-      "Built a community + events mobile app with member profiles, activity feeds and RSVP flows to drive engagement between users.",
-    technologies: ["React Native", "Firebase", "Redux"],
-    github: "https://github.com/jayesh-jadav",
-    live: "",
-  },
-  {
-    name: "Shywon",
-    description:
-      "Created a mobile shopping app with catalog, cart, wishlist and secure payments, focused on a fast, frictionless checkout.",
-    technologies: ["React Native", "Firebase", "Redux"],
-    github: "https://github.com/jayesh-jadav",
-    live: "",
-  },
-  {
-    name: "Gvoice",
-    description:
-      "AI Meeting Intelligence platform for Google Meet, Zoom & Teams — web and native (iOS/Android) apps. Auto-joins from your calendar, records and live-transcribes with speaker labels, then generates executive summaries, key moments, decisions, sentiment analysis and owned action items — with searchable recordings, exec-ready reports and data stored in your own Azure Blob Storage.",
-    technologies: ["React", "React Native", "TypeScript", "AI/LLM"],
-    github: "https://github.com/jayesh-jadav",
+      "Full-stack meeting intelligence system where Playwright bots join Google Meet, Zoom & Teams to capture live audio and transcribe through Whisper & Sarvam APIs with auto-generated action items.",
+    technologies: ["React", "TypeScript", "Node.js", "BullMQ", "Redis", "Whisper AI", "Playwright"],
+    image: gvoiceImg,
+    badge: "AI Platform",
+    github: "https://github.com/jayesh-jadav/gvoice-meeting-intelligence",
     live: "https://gvoice.groovyweb.ai/",
   },
   {
-    name: "Gstride",
+    name: "Gstride — Workforce Analytics",
+    tagline: "Enterprise Productivity & Time Tracking",
+    category: ["all", "ai", "react"],
     description:
-      "Enterprise workforce productivity monitoring platform with AI-powered time tracking, screenshot capture, productivity analytics, AI tool detection (17 tools), HRMS and multi-organization white-label support — built with a React dashboard, NestJS API and Electron desktop app.",
-    technologies: ["React", "NestJS", "TypeScript", "MySQL"],
+      "Enterprise workforce monitoring platform featuring AI tool detection (17+ tools), automated activity heatmaps, desktop screenshot capture, and HRMS reporting dashboards.",
+    technologies: ["React", "TypeScript", "Redux", "NestJS", "MySQL", "Electron"],
+    image: gstrideImg,
+    badge: "Enterprise",
     github: "https://github.com/jayesh-jadav",
     live: "https://gstride.ai/",
+  },
+  {
+    name: "Bolo English — AI Language Tutor",
+    tagline: "Interactive Voice & Quiz AI App",
+    category: ["all", "ai", "react"],
+    description:
+      "Language-learning web & mobile app featuring audio pronunciation scoring, gamified quizzes, streak tracking, and a Google Gemini-powered AI tutor explaining concepts in native languages.",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Google Gemini"],
+    image: boloImg,
+    badge: "AI Product",
+    github: "https://github.com/jayesh-jadav/bolo-english",
+    live: "",
+  },
+  {
+    name: "Fleet Kaptan — Logistics PWA",
+    tagline: "Real-Time Fleet Operations Dashboard",
+    category: ["all", "react"],
+    description:
+      "Progressive Web App for fleet tracking with live telemetry markers, offline sync, route efficiency analytics, and role-based access control (RBAC) cutting dashboard load times by ~20%.",
+    technologies: ["React.js", "Redux Toolkit", "Material-UI", "PWA", "Service Workers"],
+    image: fleetImg,
+    badge: "Production PWA",
+    github: "https://github.com/jayesh-jadav",
+    live: "",
+  },
+  {
+    name: "Oculabs — Healthcare Portal",
+    tagline: "Clinical Diagnostic & Patient Management",
+    category: ["all", "react", "mobile"],
+    description:
+      "Dual-platform hospital administration dashboard and patient-facing mobile application designed for diagnostic workflows, doctor scheduling, and real-time medical lab reporting.",
+    technologies: ["React.js", "React Native", "Material-UI", "REST APIs"],
+    image: oculabsImg,
+    badge: "Healthcare",
+    github: "https://github.com/jayesh-jadav",
+    live: "",
+  },
+  {
+    name: "rn-month-year-dropdown-picker",
+    tagline: "Open Source React Native npm Package",
+    category: ["all", "mobile", "oss"],
+    description:
+      "Zero-dependency, customizable month & year picker dropdown component published to npm with 12+ releases, full TypeScript definitions, and active developer adoption.",
+    technologies: ["React Native", "TypeScript", "npm Package", "Open Source"],
+    image: npmImg,
+    badge: "Open Source",
+    github: "https://github.com/jayesh-jadav",
+    live: "https://www.npmjs.com/package/rn-month-year-dropdown-picker",
+  },
+  {
+    name: "Reanlo for Readers",
+    tagline: "Cross-Platform Mobile Reading App",
+    category: ["all", "mobile"],
+    description:
+      "Cross-platform mobile reading application built in React Native with gesture-based page flipping, offline chapter storage engine, dark mode, and reading progress synchronization.",
+    technologies: ["React Native", "TypeScript", "AsyncStorage", "React Navigation"],
+    image: reanloImg,
+    badge: "Mobile App",
+    github: "https://github.com/jayesh-jadav",
+    live: "",
   },
 ];
 
 const Projects = () => {
   const { themeData } = useSelector((state) => state.auth);
   const className = useStyles(themeData)();
+  const [activeCategory, setActiveCategory] = useState("all");
 
-  // Skip the tilt/spotlight on touch screens and for reduced-motion users
   const motionOff =
     typeof window !== "undefined" &&
     (window.matchMedia("(hover: none)").matches ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-  // Tilt the card toward the cursor and move the spotlight highlight
   const handleMove = (e) => {
     if (motionOff) return;
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const rotateX = (y / rect.height - 0.5) * -8;
-    const rotateY = (x / rect.width - 0.5) * 8;
+    const rotateX = (y / rect.height - 0.5) * -6;
+    const rotateY = (x / rect.width - 0.5) * 6;
     card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
     card.style.setProperty("--mx", `${x}px`);
     card.style.setProperty("--my", `${y}px`);
@@ -104,32 +137,82 @@ const Projects = () => {
     e.currentTarget.style.transform = "";
   };
 
+  const filteredProjects = projects.filter((p) => p.category.includes(activeCategory));
+
   return (
-    <Grid container className={className.container}>
-      <Grid size={{ xs: 11, md: 9 }}>
-        <Grid style={{ textAlign: "center", marginBottom: 30 }}>
-          <Eyebrow index="03" label="Selected Work" />
-          <Typography variant="title" style={{ color: themeData.headerText }}>
-            Projects
+    <div className={className.container}>
+      <Grid container justifyContent="center" sx={{ width: "100%", maxWidth: "1280px", px: { xs: 2, md: 4 } }}>
+        <Grid size={12} sx={{ textAlign: "center", mb: 3 }}>
+          <Eyebrow index="03" label="Featured Engineering Work" />
+          <Typography variant="h1" sx={{ fontSize: "clamp(28px, 4vw, 42px) !important", fontWeight: "700 !important", color: themeData.headerText, mt: 1 }}>
+            Featured Projects
+          </Typography>
+          <Typography variant="subText" sx={{ color: themeData.textSecondary, mt: 1, maxWidth: "600px", mx: "auto" }}>
+            Real-world systems, AI platforms, and open-source packages shipped to production.
           </Typography>
         </Grid>
-        <Grid container spacing={4} justifyContent="center">
-          {projects.map((project, index) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
+
+        {/* Category Filter Tabs */}
+        <Grid size={12} sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 1.2, mb: 4 }}>
+          {filterCategories.map((cat) => {
+            const isActive = activeCategory === cat.id;
+            return (
+              <Button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                startIcon={cat.icon}
+                sx={{
+                  padding: "7px 16px !important",
+                  borderRadius: "24px !important",
+                  fontSize: "13px !important",
+                  fontWeight: "600 !important",
+                  textTransform: "none",
+                  backgroundColor: isActive ? `${themeData.primary} !important` : `${themeData.surface} !important`,
+                  color: isActive ? `${themeData.white} !important` : `${themeData.text} !important`,
+                  border: `1px solid ${isActive ? themeData.accent : themeData.glassBorder} !important`,
+                  boxShadow: isActive ? `0 4px 14px ${themeData.glow}` : "none",
+                  transition: "all 0.25s ease",
+                  "&:hover": {
+                    backgroundColor: isActive ? themeData.primary : themeData.secondary,
+                    borderColor: themeData.accent,
+                  },
+                }}
+              >
+                {cat.label} ({cat.count})
+              </Button>
+            );
+          })}
+        </Grid>
+
+        <Grid container spacing={3.5} justifyContent="center" sx={{ width: "100%" }}>
+          {filteredProjects.map((project, index) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={project.name} sx={{ display: "flex" }}>
               <Card
                 className={`${className.card} project-card-border`}
                 onMouseMove={handleMove}
                 onMouseLeave={handleLeave}
               >
-                <CardContent>
+                <div className={className.imageWrapper}>
+                  <img src={project.image} alt={project.name} className={className.image} loading="lazy" />
+                  {project.badge && (
+                    <Chip label={project.badge} size="small" className={className.badge} icon={<Star sx={{ fontSize: "14px !important", color: "#22d3ee !important" }} />} />
+                  )}
+                </div>
+
+                <CardContent sx={{ p: 2.5, flexGrow: 1 }}>
                   <Typography
-                    variant="head"
-                    gutterBottom
-                    sx={{ fontWeight: 500 }}
+                    variant="h3"
+                    sx={{ fontSize: "18.5px !important", fontWeight: "700 !important", color: themeData.headerText, mb: 0.5 }}
                   >
                     {project.name}
                   </Typography>
-                  <Typography variant="subText" gutterBottom>
+                  <Typography
+                    variant="subTitle"
+                    sx={{ fontSize: "12.5px !important", color: themeData.accent, fontWeight: "600 !important", display: "block", mb: 1.5 }}
+                  >
+                    {project.tagline}
+                  </Typography>
+                  <Typography variant="subText" sx={{ fontSize: "13.5px !important", lineHeight: 1.55, color: themeData.text, mb: 2 }}>
                     {project.description}
                   </Typography>
                   <div className={className.chipRow}>
@@ -143,6 +226,7 @@ const Projects = () => {
                     ))}
                   </div>
                 </CardContent>
+
                 <CardActions className={className.actions}>
                   {project.github && (
                     <Link
@@ -161,7 +245,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className={className.projectLink}
                     >
-                      <Launch fontSize="small" /> Live Demo
+                      <Launch fontSize="small" /> Live App
                     </Link>
                   )}
                 </CardActions>
@@ -170,7 +254,7 @@ const Projects = () => {
           ))}
         </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 };
 

@@ -7,10 +7,12 @@ import {
   Snackbar,
   TextField,
   Typography,
+  Chip,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { Setting } from "../../Utils/setting";
 import SendIcon from "@mui/icons-material/Send";
+import { Email, Phone, LocationOn, ContentCopy, Check } from "@mui/icons-material";
 import emailjs from "emailjs-com";
 import { useSelector } from "react-redux";
 import Eyebrow from "../Eyebrow";
@@ -30,9 +32,21 @@ function Contact() {
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
-    severity: "success", // success or error
+    severity: "success",
   });
   const [btnLoad, setBtnLoad] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("jadav241198@gmail.com");
+    setCopiedEmail(true);
+    setSnackbar({
+      open: true,
+      message: "Email copied: jadav241198@gmail.com",
+      severity: "success",
+    });
+    setTimeout(() => setCopiedEmail(false), 2500);
+  };
 
   const validate = () => {
     const newErrors = {};
@@ -64,20 +78,18 @@ function Contact() {
     if (validate()) {
       try {
         setBtnLoad(true);
-        // Send email via EmailJS
         const response = await emailjs.send(
-          "service_vbcwp8e", // Replace with your EmailJS service ID
-          "template_8dgreb4", // Replace with your EmailJS template ID
-          formValues, // This will send the form values as parameters
-          "J-L9Nk5hoIdsDng9t" // Replace with your EmailJS user ID
+          "service_vbcwp8e",
+          "template_8dgreb4",
+          formValues,
+          "J-L9Nk5hoIdsDng9t"
         );
         console.log("Message sent successfully:", response);
         setSnackbar({
           open: true,
-          message: "Form submitted successfully!",
+          message: "Message sent successfully! I'll get back to you within 24 hours.",
           severity: "success",
         });
-        // Clear form after successful submission
         setFormValues({
           name: "",
           email: "",
@@ -89,7 +101,7 @@ function Contact() {
         console.log("Error sending message:", error);
         setSnackbar({
           open: true,
-          message: "Failed to send message, please try again.",
+          message: "Failed to send message. Please email me directly at jadav241198@gmail.com",
           severity: "error",
         });
       } finally {
@@ -99,138 +111,189 @@ function Contact() {
   };
 
   return (
-    <Grid container className={className.container}>
-      <Grid size={{ xs: 11, md: 10 }}>
-        <Grid style={{ textAlign: "center" }}>
+    <div className={className.container}>
+      <Grid container justifyContent="center" sx={{ width: "100%", maxWidth: "1100px", px: { xs: 2, md: 4 } }}>
+        <Grid size={12} sx={{ textAlign: "center", mb: 4 }}>
           <Eyebrow index="04" label="Get In Touch" />
-          <Typography variant="h1">Let's Connect</Typography>
+          <Typography variant="h1" sx={{ fontSize: "clamp(28px, 4vw, 42px) !important", fontWeight: "700 !important", color: themeData.headerText, mt: 1 }}>
+            Let's Build Together
+          </Typography>
+          <Typography variant="subText" sx={{ color: themeData.textSecondary, mt: 1, maxWidth: "550px", mx: "auto" }}>
+            Available for Frontend, React Native & Full-Stack roles (Remote or Hybrid).
+          </Typography>
         </Grid>
-        <Grid className={className.section}>
-          <Grid size={{ xs: 11, md: 9 }} className={className.formCard}>
-            <form onSubmit={handleSubmit} noValidate>
-              <Grid style={{ display: "flex", flexWrap: "wrap" }} gap={2}>
-                {/* Name Field */}
-                <Grid item size={{ xs: 12, md: 5.8 }}>
-                  <TextField
-                    fullWidth
-                    label="Name"
-                    name="name"
-                    placeholder="Enter your name"
-                    value={formValues.name}
-                    onChange={handleChange}
-                    error={!!errors.name}
-                    helperText={errors.name}
-                    required
-                    style={{
-                      color: themeData.secondary,
-                    }}
-                  />
-                </Grid>
 
-                {/* Email Field */}
-                <Grid item size={{ xs: 12, md: 5.8 }}>
-                  <TextField
-                    fullWidth
-                    label="Email"
-                    name="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={formValues.email}
-                    onChange={handleChange}
-                    error={!!errors.email}
-                    helperText={errors.email}
-                    required
-                  />
-                </Grid>
+        {/* Direct Contact Cards */}
+        <Grid size={12} sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 2, mb: 4 }}>
+          <Button
+            onClick={handleCopyEmail}
+            startIcon={copiedEmail ? <Check sx={{ color: "#22d3ee" }} /> : <Email />}
+            endIcon={<ContentCopy sx={{ fontSize: "14px !important", opacity: 0.7 }} />}
+            sx={{
+              padding: "10px 20px !important",
+              borderRadius: "12px !important",
+              backgroundColor: `${themeData.glassBg} !important`,
+              border: `1px solid ${themeData.glassBorder} !important`,
+              color: `${themeData.text} !important`,
+              textTransform: "none",
+              fontWeight: "600 !important",
+              "&:hover": { borderColor: themeData.accent },
+            }}
+          >
+            jadav241198@gmail.com
+          </Button>
 
-                {/* Phone Field */}
-                <Grid item size={{ xs: 12, md: 5.8 }}>
-                  <TextField
-                    fullWidth
-                    label="Phone"
-                    name="phone"
-                    type="number"
-                    placeholder="Enter your phone"
-                    InputProps={{
-                      inputProps: { maxLength: 10 }, // Restrict to 10 characters
-                    }}
-                    value={formValues.phone}
-                    onChange={handleChange}
-                    error={!!errors.phone}
-                    helperText={errors.phone}
-                    required
-                  />
-                </Grid>
+          <Button
+            component="a"
+            href="tel:+919054736628"
+            startIcon={<Phone />}
+            sx={{
+              padding: "10px 20px !important",
+              borderRadius: "12px !important",
+              backgroundColor: `${themeData.glassBg} !important`,
+              border: `1px solid ${themeData.glassBorder} !important`,
+              color: `${themeData.text} !important`,
+              textTransform: "none",
+              fontWeight: "600 !important",
+              "&:hover": { borderColor: themeData.accent },
+            }}
+          >
+            +91 9054736628
+          </Button>
 
-                <Grid item size={{ xs: 12, md: 5.8 }}>
-                  <TextField
-                    fullWidth
-                    label="Subject"
-                    name="subject"
-                    placeholder="Enter your subject"
-                    value={formValues.subject}
-                    onChange={handleChange}
-                    error={!!errors.subject}
-                    helperText={errors.subject}
-                    required
-                  />
-                </Grid>
+          <Chip
+            icon={<LocationOn sx={{ color: "#22d3ee !important" }} />}
+            label="Gujarat, India (Open to Remote)"
+            sx={{
+              padding: "20px 14px",
+              borderRadius: "12px",
+              backgroundColor: themeData.glassBg,
+              border: `1px solid ${themeData.glassBorder}`,
+              color: themeData.text,
+              fontWeight: 600,
+              fontSize: "13.5px",
+            }}
+          />
+        </Grid>
 
-                {/* Message Field */}
-                <Grid item size={{ xs: 12, md: 11.8 }}>
-                  <TextField
-                    fullWidth
-                    // multiline
-                    rows={4}
-                    label="Message"
-                    name="message"
-                    placeholder="Enter your message"
-                    value={formValues.message}
-                    onChange={handleChange}
-                    error={!!errors.message}
-                    helperText={errors.message}
-                    required
-                  />
-                </Grid>
+        <Grid size={12} className={className.formCard}>
+          <form onSubmit={handleSubmit} noValidate>
+            <Grid container spacing={2.5}>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
+                  label="Your Name"
+                  name="name"
+                  placeholder="e.g. Alex Smith"
+                  value={formValues.name}
+                  onChange={handleChange}
+                  error={!!errors.name}
+                  helperText={errors.name}
+                  required
+                />
+              </Grid>
 
-                {/* Submit Button */}
-                <Grid item size={12} style={{ textAlign: "center" }}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    endIcon={
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  placeholder="alex@company.com"
+                  value={formValues.email}
+                  onChange={handleChange}
+                  error={!!errors.email}
+                  helperText={errors.email}
+                  required
+                />
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
+                  label="Phone Number"
+                  name="phone"
+                  placeholder="+91 9876543210"
+                  value={formValues.phone}
+                  onChange={handleChange}
+                  error={!!errors.phone}
+                  helperText={errors.phone}
+                  required
+                />
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
+                  label="Subject / Role"
+                  name="subject"
+                  placeholder="Frontend / React Native Role"
+                  value={formValues.subject}
+                  onChange={handleChange}
+                  error={!!errors.subject}
+                  helperText={errors.subject}
+                  required
+                />
+              </Grid>
+
+              <Grid size={12}>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={4}
+                  label="Message"
+                  name="message"
+                  placeholder="Hi Jayesh, we'd like to discuss a frontend role..."
+                  value={formValues.message}
+                  onChange={handleChange}
+                  error={!!errors.message}
+                  helperText={errors.message}
+                  required
+                />
+              </Grid>
+
+              <Grid size={12} sx={{ textAlign: "center", mt: 1 }}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  disabled={btnLoad}
+                  endIcon={
+                    !btnLoad && (
                       <SendIcon
                         style={{
                           transform: "rotate(-45deg)",
-                          marginBottom: 5,
-                          marginLeft: 10,
+                          marginBottom: 4,
+                          marginLeft: 6,
                         }}
                       />
-                    }
-                  >
-                    {btnLoad ? <CircularProgress size={22} /> : "Send Message"}
-                  </Button>
-                </Grid>
+                    )
+                  }
+                  sx={{ padding: "12px 32px !important", fontSize: "15px !important" }}
+                >
+                  {btnLoad ? <CircularProgress size={22} color="inherit" /> : "Send Message"}
+                </Button>
               </Grid>
-            </form>
-            <Snackbar
-              open={snackbar.open}
-              autoHideDuration={6000} // auto-hide after 6 seconds
-              onClose={() => setSnackbar({ ...snackbar, open: false })}
-            >
-              <Alert
-                onClose={() => setSnackbar({ ...snackbar, open: false })}
-                severity={snackbar.severity}
-                variant="filled"
-                sx={{ width: "100%" }}
-              >
-                {snackbar.message}
-              </Alert>
-            </Snackbar>
-          </Grid>
+            </Grid>
+          </form>
         </Grid>
       </Grid>
-    </Grid>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
+          severity={snackbar.severity}
+          variant="filled"
+          sx={{ fontWeight: 600 }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
+    </div>
   );
 }
 

@@ -8,28 +8,16 @@
   scroll-behavior: smooth;
 }
 
-.main {
-  min-height: 100vh;
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@font-face {
-  font-family: "EuropaRegular";
-  src: local("Europa-Regular"),
-    url("./Assets/Fonts/Europa-Regular.ttf") format("truetype");
+code, pre, .mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
-@font-face {
-  font-family: "EuropaBold";
-  src: local("Europa-Bold"),
-    url("./Assets/Fonts/Europa-Bold.ttf") format("truetype");
-  font-weight: 900;
-}
-@font-face {
-  font-family: "EuropaLight";
-  src: local("Europa-Light"),
-    url("./Assets/Fonts/Europa-Light.woff2.ttf") format("truetype");
-  font-weight: 900;
-}
-@font-face {
-  font-family: "Minion";
-  src: local("Minion"), url("./Assets/Fonts/Minion.otf") format("truetype");
+
+.main {
+  min-height: 100vh;
 }

@@ -27,9 +27,10 @@ export const colors = {
   heroGlow3: "rgba(59, 130, 246, 0.14)",
   mono: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
 };
+
 export const darkColors = {
   // --- Aurora Dark identity ---
-  primary: "#0f1b1f", // deep teal-slate: header, timeline cards
+  primary: "#0f1b1f", // deep teal-slate
   black: "#0a0a0a",
   hoverColor: "#16323a",
   secondary: "#122227",
@@ -58,22 +59,15 @@ export const darkColors = {
 };
 
 export const FontFamily = {
-  Regular: "EuropaRegular !important",
-  Bold: "EuropaBold !important",
-  Minion: "Minion !important",
+  Regular: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important",
+  Bold: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important",
+  Mono: "'JetBrains Mono', monospace !important",
 };
-const Minion = {
-  fontFamily: FontFamily.Regular,
-  fontStyle: "normal",
-  fontDisplay: "swap",
-  src: "url('../Assets/Fonts/Minion.ttf') format('ttf')",
-};
+
 const theme = (themeData) =>
-  createTheme(theme, {
-    MuiCssBaseline: {
-      "@global": {
-        "@font-face": [Minion],
-      },
+  createTheme({
+    typography: {
+      fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
     },
     palette: {
       primary: {
@@ -97,58 +91,56 @@ const theme = (themeData) =>
         styleOverrides: {
           root: {
             display: "block",
-            transition: "0.5s",
-            fontFamily: "Minion !important",
-            letterSpacing: "0.6px",
+            transition: "0.3s ease",
+            fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important",
+            letterSpacing: "-0.01em",
             color: themeData.text,
-            overflow: "hidden",
             fontWeight: 400,
-            fontSize: 14,
+            fontSize: 14.5,
             "@media (max-width: 768px)": {
-              fontSize: 12,
+              fontSize: 13.5,
             },
           },
           h1: {
-            fontSize: 50,
-            fontWeight: 700,
-            fontFamily: "Minion !important",
-            "@media (max-width: 768px)": {
-              fontSize: "36px !important",
-            },
+            fontSize: "clamp(34px, 5vw, 54px)",
+            fontWeight: "800 !important",
+            letterSpacing: "-0.03em",
+            lineHeight: 1.15,
+            fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important",
           },
           h3: {
-            fontSize: 40,
-            fontWeight: 700,
-            fontFamily: "Minion !important",
-            "@media (max-width: 768px)": {
-              fontSize: "26px !important",
-            },
+            fontSize: "clamp(24px, 3.5vw, 36px)",
+            fontWeight: "700 !important",
+            letterSpacing: "-0.02em",
+            fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important",
           },
           title: {
-            fontSize: 32,
-            fontWeight: 700,
-            fontFamily: "Minion !important",
-            "@media (max-width: 768px)": {
-              fontSize: "18px !important",
-            },
+            fontSize: "clamp(20px, 3vw, 30px)",
+            fontWeight: "700 !important",
+            letterSpacing: "-0.02em",
+            fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important",
           },
           subText: {
-            fontWeight: "500 !important",
-            fontFamily: "Minion !important",
-            fontSize: 16,
+            fontWeight: "400 !important",
+            fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important",
+            fontSize: 15.5,
+            lineHeight: 1.65,
+            color: themeData.textSecondary,
             "@media (max-width: 768px)": {
-              fontSize: "14px !important",
+              fontSize: 14,
             },
           },
           subTitle: {
-            fontWeight: "700 !important",
-            fontFamily: "Minion !important",
-            fontSize: 18,
+            fontWeight: "600 !important",
+            fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important",
+            fontSize: 17,
+            letterSpacing: "-0.01em",
           },
           head: {
             fontWeight: "700 !important",
-            fontFamily: "Minion !important",
-            fontSize: 26,
+            fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important",
+            fontSize: 24,
+            letterSpacing: "-0.02em",
           },
         },
       },
@@ -156,18 +148,8 @@ const theme = (themeData) =>
         styleOverrides: {
           root: {
             color: themeData.primary,
-            transition: "500ms",
-            fontFamily: `EuropaRegular !important`,
-            // "&:hover": {
-            //   backgroundColor: themeData.white,
-            //   color: themeData.white,
-            // },
-            "@media (hover: none)": {
-              "&:hover": {
-                backgroundColor: "transparent",
-                color: `${themeData.primary} !important`,
-              },
-            },
+            transition: "300ms",
+            fontFamily: "'Plus Jakarta Sans', sans-serif !important",
           },
         },
       },
@@ -176,16 +158,17 @@ const theme = (themeData) =>
           root: {
             color: themeData.primary,
             backgroundColor: themeData.white,
-            transition: "all 300ms ease",
-            fontFamily: `Minion !important`,
+            transition: "all 250ms ease",
+            fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important",
             fontWeight: 700,
-            fontSize: 14,
+            fontSize: 13.5,
+            letterSpacing: "0.01em",
             position: "relative",
             overflow: "hidden",
-            padding: "10px",
-            borderRadius: 8,
+            padding: "10px 20px",
+            borderRadius: 10,
             zIndex: 1,
-            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+            boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
           },
           containedPrimary: {
             color: themeData.headerText,
@@ -218,15 +201,6 @@ const theme = (themeData) =>
                 transform: "translateX(0)",
               },
             },
-            // "@media (hover: none)": {
-            //   "&:hover": {
-            //     backgroundColor: "transparent",
-            //     color: `${themeData.primary} !important`,
-            //     "&::before, &::after": {
-            //       transform: "translateX(-102%)",
-            //     },
-            //   },
-            // },
           },
           secondary: {
             color: themeData.primary,
@@ -241,7 +215,7 @@ const theme = (themeData) =>
               backgroundColor: themeData.hoverColor,
               transform: "scaleX(0)",
               transformOrigin: "right",
-              transition: "transform 500ms ease",
+              transition: "transform 400ms ease",
               zIndex: -1,
             },
             "&:hover": {
@@ -251,15 +225,6 @@ const theme = (themeData) =>
                 transformOrigin: "left",
               },
             },
-            "@media (hover: none)": {
-              "&:hover": {
-                backgroundColor: themeData.transparent,
-                color: `${themeData.primary} !important`,
-                "&::before": {
-                  transform: "scaleX(0)",
-                },
-              },
-            },
           },
         },
       },
@@ -267,30 +232,32 @@ const theme = (themeData) =>
       MuiTab: {
         styleOverrides: {
           root: {
-            fontFamily: `Minion`,
+            fontFamily: "'Plus Jakarta Sans', sans-serif !important",
             fontWeight: "600",
+            letterSpacing: "-0.01em",
           },
         },
       },
       MuiInputLabel: {
         styleOverrides: {
           root: {
-            color: "gray", // Default label color
+            fontFamily: "'Plus Jakarta Sans', sans-serif !important",
+            color: "gray",
           },
         },
       },
       MuiOutlinedInput: {
         styleOverrides: {
           input: {
-            fontFamily: "Minion",
+            fontFamily: "'Plus Jakarta Sans', sans-serif !important",
             fontSize: 14,
             "&::placeholder": {
-              color: "gray", // Placeholder color
-              opacity: 1, // Ensure full color opacity
+              color: "gray",
+              opacity: 1,
             },
           },
           root: {
-            borderRadius: "8px",
+            borderRadius: "10px",
             "& input[type=number]::-webkit-inner-spin-button, & input[type=number]::-webkit-outer-spin-button":
               {
                 appearance: "none",
@@ -305,11 +272,12 @@ const theme = (themeData) =>
       MuiChip: {
         styleOverrides: {
           root: {
-            padding: "4px 0px",
+            padding: "4px 2px",
             fontSize: 12,
-            fontFamily: "Minion",
-            textTransform: "uppercase",
+            fontFamily: "'Plus Jakarta Sans', sans-serif !important",
+            fontWeight: 600,
             height: "auto",
+            borderRadius: "8px",
           },
         },
       },
@@ -319,7 +287,7 @@ const theme = (themeData) =>
             textDecoration: "none",
             padding: 0,
             margin: 0,
-            fontFamily: "Minion",
+            fontFamily: "'Plus Jakarta Sans', sans-serif !important",
           },
         },
       },

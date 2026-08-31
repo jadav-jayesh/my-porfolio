@@ -1,10 +1,12 @@
-import { Avatar, Button, Link, Typography } from "@mui/material";
-import React from "react";
+import { Avatar, Button, Link, Typography, Snackbar, Alert } from "@mui/material";
+import React, { useState } from "react";
 import useStyles from "./styles";
 import Typewriter from "../TypeWriter";
 import {
+  Check,
+  ContentCopy,
   Download,
-  Facebook,
+  Email,
   GitHub,
   Instagram,
   LinkedIn,
@@ -18,8 +20,16 @@ import Eyebrow from "../Eyebrow";
 const Home = () => {
   const { themeData } = useSelector((state) => state.auth);
   const className = useStyles(themeData)();
+  const [copied, setCopied] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-  // Smooth-scroll to a section by id (used by the hero call-to-action buttons)
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("jadav241198@gmail.com");
+    setCopied(true);
+    setSnackbarOpen(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
   const scrollTo = (id) => {
     const section = document.getElementById(id);
     if (section) {
@@ -63,6 +73,7 @@ const Home = () => {
               ship reliable, polished products faster.
             </Typography>
           </div>
+
           <div className={className.ctaContainer}>
             <Button
               variant="contained"
@@ -75,19 +86,21 @@ const Home = () => {
             </Button>
             <Button
               variant="secondary"
+              onClick={handleCopyEmail}
+              className={className.ctaOutline}
+              startIcon={copied ? <Check sx={{ color: "#22d3ee" }} /> : <ContentCopy />}
+            >
+              {copied ? "Email Copied!" : "Copy Email"}
+            </Button>
+            <Button
+              variant="secondary"
               onClick={() => scrollTo("project")}
               className={className.ctaOutline}
             >
               View Projects
             </Button>
-            <Button
-              variant="secondary"
-              onClick={() => scrollTo("contact")}
-              className={className.ctaOutline}
-            >
-              Contact Me
-            </Button>
           </div>
+
           <div id="social" className={className.socialMain}>
             <Typography variant="head">Find me on</Typography>
             <div className={className.socialContainer}>
@@ -112,6 +125,15 @@ const Home = () => {
                 </Typography>
               </Link>
               <Link
+                href="mailto:jadav241198@gmail.com"
+                className={className.iconButton}
+              >
+                <Email className={className.socialIcon} />
+                <Typography variant="subTitle" className={className.socialText}>
+                  Email
+                </Typography>
+              </Link>
+              <Link
                 href="https://www.instagram.com/jadavjayesh16?igsh=MWhrb3BjZDYwbTllcQ=="
                 target="_blank"
                 className={className.iconButton}
@@ -119,16 +141,6 @@ const Home = () => {
                 <Instagram className={className.socialIcon} />
                 <Typography variant="subTitle" className={className.socialText}>
                   Instagram
-                </Typography>
-              </Link>
-              <Link
-                href="https://www.facebook.com/share/162es1DTNE/"
-                target="_blank"
-                className={className.iconButton}
-              >
-                <Facebook className={className.socialIcon} />
-                <Typography variant="subTitle" className={className.socialText}>
-                  Facebook
                 </Typography>
               </Link>
               <Link
@@ -143,6 +155,7 @@ const Home = () => {
               </Link>
             </div>
           </div>
+
           <div className={className.workContainer}>
             <div className={className.card}>
               <Typography variant="head">3.8+</Typography>
@@ -154,10 +167,27 @@ const Home = () => {
             </div>
           </div>
         </div>
+
         <div className={className.borderWrapper}>
           <Avatar src={Images.profile} alt="Jayesh Jadav" className={className.img} />
         </div>
       </div>
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={() => setSnackbarOpen(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setSnackbarOpen(false)}
+          severity="success"
+          variant="filled"
+          sx={{ backgroundColor: "#0f766e", color: "#ffffff", fontWeight: 600 }}
+        >
+          Email copied to clipboard (jadav241198@gmail.com)
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
