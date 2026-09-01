@@ -20,11 +20,12 @@ const CustomCursor = () => {
   const rafId = useRef(null);
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 960;
     const canHover = window.matchMedia("(any-hover: hover)").matches;
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    if (!canHover || reduceMotion) return;
+    if (isMobile || !canHover || reduceMotion) return;
 
     document.body.classList.add("custom-cursor-active");
 

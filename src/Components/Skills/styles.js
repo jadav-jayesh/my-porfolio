@@ -8,10 +8,16 @@ const useStyles = (themeData) =>
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: themeData.surfaceAlt,
+      "@media (max-width:768px)": {
+        padding: "48px 0px",
+      },
     },
     mainHeader: {
       textAlign: "center",
       marginBottom: 30,
+      "@media (max-width:768px)": {
+        marginBottom: 20,
+      },
     },
     cardContainer: {
       marginTop: 10,
@@ -28,8 +34,12 @@ const useStyles = (themeData) =>
       display: "flex",
       flexDirection: "column",
       height: "100%",
+      boxSizing: "border-box",
       transition:
         "transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease",
+      "@media (max-width:600px)": {
+        padding: "16px 14px",
+      },
       "&::before": {
         content: '""',
         position: "absolute",
@@ -90,8 +100,11 @@ const useStyles = (themeData) =>
     skillName: {
       color: themeData.headerText,
       fontWeight: "600 !important",
-      fontSize: "14.5px !important",
+      fontSize: "14px !important",
       letterSpacing: "-0.01em",
+      "@media (max-width:480px)": {
+        fontSize: "13px !important",
+      },
     },
     badgeGroup: {
       display: "flex",

@@ -91,7 +91,7 @@ export default function Experience() {
 
   return (
     <Grid container className={className.container}>
-      <Grid size={{ xs: 11, md: 9 }}>
+      <Grid size={{ xs: 11.5, sm: 11, md: 9 }}>
         <Grid style={{ textAlign: "center", marginBottom: 30 }}>
           <Eyebrow index="02" label="Career Journey" />
           <Typography variant="title" style={{ color: themeData.headerText }}>
@@ -122,12 +122,23 @@ export default function Experience() {
                   borderRight: `7px solid ${themeData.primary}`,
                 }}
               >
-                <Typography variant="head" style={{ color: themeData.white }}>
+                <Typography
+                  variant="head"
+                  style={{
+                    color: themeData.white,
+                    fontSize: "clamp(17px, 3.5vw, 22px)",
+                    lineHeight: 1.25,
+                  }}
+                >
                   {item?.title}
                 </Typography>
                 <Typography
                   variant="subTitle"
-                  style={{ color: themeData.white }}
+                  style={{
+                    color: themeData.white,
+                    fontSize: "clamp(13px, 2.5vw, 15px)",
+                    marginTop: 2,
+                  }}
                 >
                   {item?.company}
                 </Typography>

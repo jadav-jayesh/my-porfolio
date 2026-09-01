@@ -20,7 +20,7 @@ function App() {
     if (section) {
       section.scrollIntoView({
         behavior: "smooth",
-        block: "center", // Align to the top of the section
+        block: "start",
       });
       setActiveSection(newValue);
     }

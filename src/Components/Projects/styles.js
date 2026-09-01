@@ -8,6 +8,9 @@ const useStyles = (themeData) =>
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: themeData.surfaceAlt,
+      "@media (max-width:768px)": {
+        padding: "48px 0px",
+      },
     },
     card: {
       position: "relative",
@@ -18,6 +21,8 @@ const useStyles = (themeData) =>
       color: `${themeData.text} !important`,
       border: `1px solid ${themeData.glassBorder}`,
       height: "100%",
+      width: "100%",
+      boxSizing: "border-box",
       display: "flex !important",
       flexDirection: "column",
       justifyContent: "space-between",
@@ -56,7 +61,7 @@ const useStyles = (themeData) =>
     imageWrapper: {
       position: "relative",
       width: "100%",
-      height: 200,
+      height: "clamp(170px, 42vw, 200px)",
       overflow: "hidden",
       backgroundColor: themeData.background,
       borderBottom: `1px solid ${themeData.glassBorder}`,
@@ -97,9 +102,13 @@ const useStyles = (themeData) =>
     },
     actions: {
       padding: "12px 18px 18px 18px !important",
-      gap: 16,
+      gap: 12,
       borderTop: `1px solid ${themeData.glassBorder}`,
       marginTop: "auto",
+      flexWrap: "wrap",
+      "@media (max-width:600px)": {
+        padding: "10px 14px 14px 14px !important",
+      },
     },
     projectLink: {
       display: "inline-flex !important",
@@ -107,9 +116,9 @@ const useStyles = (themeData) =>
       gap: 6,
       color: `${themeData.headerText} !important`,
       fontWeight: "700 !important",
-      fontSize: "13.5px !important",
+      fontSize: "13px !important",
       transition: "all 200ms ease",
-      padding: "4px 8px",
+      padding: "6px 10px",
       borderRadius: 6,
       "&:hover": {
         color: `${themeData.accent} !important`,

@@ -95,7 +95,7 @@ const Header = (props) => {
       }}
     >
       <Grid
-        size={{ xs: 11, md: 9 }}
+        size={{ xs: 11.5, sm: 11, md: 9 }}
         style={{
           display: "flex",
           alignItems: "center",
@@ -123,7 +123,7 @@ const Header = (props) => {
               label="Experiences"
               className={classes.tab}
             />
-            <Tab value={"project"} label="projects" className={classes.tab} />
+            <Tab value={"project"} label="Projects" className={classes.tab} />
             <Tab value={"contact"} label="Contact" className={classes.tab} />
           </Tabs>
           <Grid className={classes.switchContainer}>
@@ -133,49 +133,85 @@ const Header = (props) => {
         {/* Icon Button for Mobile Menu */}
         <Grid className={classes.iconContainer}>
           <MaterialUISwitch onChange={handleSwitch} checked={switchBool} />
-          <IconButton onClick={toggleDrawer(true)} className={classes.menuIcon}>
+          <IconButton
+            onClick={toggleDrawer(true)}
+            className={classes.menuIcon}
+            aria-label="Open navigation menu"
+          >
             <Menu />
           </IconButton>
         </Grid>
 
         {/* Drawer for Mobile */}
-        <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+        <Drawer
+          anchor="right"
+          open={drawerOpen}
+          onClose={toggleDrawer(false)}
+          PaperProps={{
+            sx: {
+              backgroundColor: themeData.primary,
+              backgroundImage: "none",
+            },
+          }}
+        >
           <Box
             sx={{
               backgroundColor: themeData.primary,
               height: "100%",
-              paddingTop: "30px",
+              width: "min(280px, 80vw)",
+              display: "flex",
+              flexDirection: "column",
+              paddingTop: "20px",
+              paddingBottom: "20px",
+              boxSizing: "border-box",
             }}
           >
-            <IconButton
+            <Box
               sx={{
-                display: {
-                  color: themeData.white,
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                },
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                px: 2,
+                pb: 2,
+                borderBottom: `1px solid ${themeData.glassBorder}`,
               }}
-              onClick={toggleDrawer(false)}
             >
-              <Close />
-            </IconButton>
+              <MainLogo />
+              <IconButton
+                sx={{
+                  color: themeData.white,
+                  padding: "6px",
+                }}
+                onClick={toggleDrawer(false)}
+                aria-label="Close navigation menu"
+              >
+                <Close />
+              </IconButton>
+            </Box>
+
             <Tabs
               value={value}
-              onChange={(event, newValue) => handleChange(event, newValue)}
+              onChange={(event, newValue) => {
+                handleChange(event, newValue);
+                setDrawerOpen(false);
+              }}
               orientation="vertical"
-              sx={{ width: 250 }}
+              sx={{
+                mt: 2,
+                "& .MuiTabs-indicator": {
+                  display: "none",
+                },
+              }}
             >
-              <Tab value={"home"} label="Home" className={classes.tab} />
-              <Tab value={"skills"} label="Skills" className={classes.tab} />
-              {/* <Tab value={"services"} label="Services" className={classes.tab} /> */}
+              <Tab value={"home"} label="Home" className={classes.drawerTab} />
+              <Tab value={"skills"} label="Skills" className={classes.drawerTab} />
               <Tab
                 value={"experience"}
                 label="Experience"
-                className={classes.tab}
+                className={classes.drawerTab}
               />
-              <Tab value={"project"} label="projects" className={classes.tab} />
-              <Tab value={"contact"} label="Contact" className={classes.tab} />
+              <Tab value={"project"} label="Projects" className={classes.drawerTab} />
+              <Tab value={"contact"} label="Contact" className={classes.drawerTab} />
             </Tabs>
           </Box>
         </Drawer>

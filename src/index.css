@@ -51,10 +51,23 @@ code {
     monospace;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 html {
   scroll-behavior: smooth;
   /* offset anchored sections so the sticky header never covers them */
-  scroll-padding-top: 90px;
+  scroll-padding-top: 76px;
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 64px;
+  }
 }
 
 /* Branded text selection */

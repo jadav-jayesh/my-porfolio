@@ -8,9 +8,16 @@ const useStyles = (themeData) =>
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: themeData?.surfaceAlt,
+      "@media (max-width:768px)": {
+        padding: "48px 0px",
+      },
     },
     mainHeader: {
       textAlign: "center",
+      marginBottom: 30,
+      "@media (max-width:768px)": {
+        marginBottom: 20,
+      },
     },
     section: {
       marginTop: 40,
@@ -21,6 +28,7 @@ const useStyles = (themeData) =>
     },
     formCard: {
       width: "100%",
+      boxSizing: "border-box",
       padding: "40px",
       borderRadius: 20,
       backgroundColor: themeData?.glassBg,
@@ -30,6 +38,10 @@ const useStyles = (themeData) =>
       boxShadow: themeData?.shadow,
       "@media (max-width:768px)": {
         padding: "24px",
+        borderRadius: 16,
+      },
+      "@media (max-width:480px)": {
+        padding: "18px 14px",
       },
     },
   }));

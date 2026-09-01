@@ -167,19 +167,19 @@ const Projects = () => {
 
   return (
     <div className={className.container}>
-      <Grid container justifyContent="center" sx={{ width: "100%", maxWidth: "1280px", px: { xs: 2, md: 4 } }}>
-        <Grid size={12} sx={{ textAlign: "center", mb: 3 }}>
+      <Grid container justifyContent="center" sx={{ width: "100%", maxWidth: "1280px", px: { xs: 1.5, sm: 2, md: 4 } }}>
+        <Grid size={12} sx={{ textAlign: "center", mb: { xs: 2, sm: 3 } }}>
           <Eyebrow index="03" label="Featured Engineering Work" />
-          <Typography variant="h1" sx={{ fontSize: "clamp(28px, 4vw, 42px) !important", fontWeight: "700 !important", color: themeData.headerText, mt: 1 }}>
+          <Typography variant="h1" sx={{ fontSize: "clamp(26px, 4vw, 42px) !important", fontWeight: "700 !important", color: themeData.headerText, mt: 1 }}>
             Featured Projects
           </Typography>
-          <Typography variant="subText" sx={{ color: themeData.textSecondary, mt: 1, maxWidth: "600px", mx: "auto" }}>
+          <Typography variant="subText" sx={{ color: themeData.textSecondary, mt: 1, maxWidth: "600px", mx: "auto", px: 1 }}>
             Real-world systems, AI platforms, and open-source packages shipped to production.
           </Typography>
         </Grid>
 
         {/* Category Filter Tabs */}
-        <Grid size={12} sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 1.2, mb: 4 }}>
+        <Grid size={12} sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: { xs: 0.8, sm: 1.2 }, mb: { xs: 2.5, sm: 4 } }}>
           {filterCategories.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
@@ -188,9 +188,9 @@ const Projects = () => {
                 onClick={() => setActiveCategory(cat.id)}
                 startIcon={cat.icon}
                 sx={{
-                  padding: "7px 16px !important",
+                  padding: { xs: "5px 12px !important", sm: "7px 16px !important" },
                   borderRadius: "24px !important",
-                  fontSize: "13px !important",
+                  fontSize: { xs: "12px !important", sm: "13px !important" },
                   fontWeight: "600 !important",
                   textTransform: "none",
                   backgroundColor: isActive ? `${themeData.primary} !important` : `${themeData.surface} !important`,
@@ -210,7 +210,7 @@ const Projects = () => {
           })}
         </Grid>
 
-        <Grid container spacing={3.5} justifyContent="center" sx={{ width: "100%" }}>
+        <Grid container spacing={{ xs: 2.5, sm: 3, md: 3.5 }} justifyContent="center" sx={{ width: "100%" }}>
           {filteredProjects.map((project, index) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={project.name} sx={{ display: "flex" }}>
               <Card
@@ -225,20 +225,20 @@ const Projects = () => {
                   )}
                 </div>
 
-                <CardContent sx={{ p: 2.5, flexGrow: 1 }}>
+                <CardContent sx={{ p: { xs: 2, sm: 2.5 }, flexGrow: 1 }}>
                   <Typography
                     variant="h3"
-                    sx={{ fontSize: "18.5px !important", fontWeight: "700 !important", color: themeData.headerText, mb: 0.5 }}
+                    sx={{ fontSize: "clamp(16.5px, 2.5vw, 18.5px) !important", fontWeight: "700 !important", color: themeData.headerText, mb: 0.5 }}
                   >
                     {project.name}
                   </Typography>
                   <Typography
                     variant="subTitle"
-                    sx={{ fontSize: "12.5px !important", color: themeData.accent, fontWeight: "600 !important", display: "block", mb: 1.5 }}
+                    sx={{ fontSize: "clamp(11.5px, 2vw, 12.5px) !important", color: themeData.accent, fontWeight: "600 !important", display: "block", mb: 1.5 }}
                   >
                     {project.tagline}
                   </Typography>
-                  <Typography variant="subText" sx={{ fontSize: "13.5px !important", lineHeight: 1.55, color: themeData.text, mb: 2 }}>
+                  <Typography variant="subText" sx={{ fontSize: "clamp(12.5px, 2vw, 13.5px) !important", lineHeight: 1.55, color: themeData.text, mb: 2 }}>
                     {project.description}
                   </Typography>
                   <div className={className.chipRow}>

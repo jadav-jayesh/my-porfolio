@@ -37,7 +37,7 @@ const Marquee = () => {
         borderBottom: `1px solid ${themeData.glassBorder}`,
         background: themeData.surfaceAlt,
         overflow: "hidden",
-        padding: "18px 0",
+        padding: "clamp(12px, 2vw, 18px) 0",
         maskImage:
           "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
         WebkitMaskImage:
@@ -51,12 +51,12 @@ const Marquee = () => {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: 22,
-              padding: "0 22px",
+              gap: "clamp(12px, 2.5vw, 22px)",
+              padding: "0 clamp(12px, 2.5vw, 22px)",
               fontFamily: themeData.mono,
-              fontSize: 20,
+              fontSize: "clamp(13.5px, 2.5vw, 18px)",
               fontWeight: 600,
-              letterSpacing: "1px",
+              letterSpacing: "0.5px",
               whiteSpace: "nowrap",
               color: themeData.text,
             }}
@@ -65,8 +65,8 @@ const Marquee = () => {
             <span
               aria-hidden="true"
               style={{
-                width: 7,
-                height: 7,
+                width: 6,
+                height: 6,
                 borderRadius: "50%",
                 background: themeData.gradient,
                 display: "inline-block",

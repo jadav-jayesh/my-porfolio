@@ -112,31 +112,33 @@ function Contact() {
 
   return (
     <div className={className.container}>
-      <Grid container justifyContent="center" sx={{ width: "100%", maxWidth: "1100px", px: { xs: 2, md: 4 } }}>
-        <Grid size={12} sx={{ textAlign: "center", mb: 4 }}>
+      <Grid container justifyContent="center" sx={{ width: "100%", maxWidth: "1100px", px: { xs: 1.5, sm: 2, md: 4 } }}>
+        <Grid size={12} sx={{ textAlign: "center", mb: { xs: 2.5, sm: 4 } }}>
           <Eyebrow index="04" label="Get In Touch" />
-          <Typography variant="h1" sx={{ fontSize: "clamp(28px, 4vw, 42px) !important", fontWeight: "700 !important", color: themeData.headerText, mt: 1 }}>
+          <Typography variant="h1" sx={{ fontSize: "clamp(26px, 4vw, 42px) !important", fontWeight: "700 !important", color: themeData.headerText, mt: 1 }}>
             Let's Build Together
           </Typography>
-          <Typography variant="subText" sx={{ color: themeData.textSecondary, mt: 1, maxWidth: "550px", mx: "auto" }}>
+          <Typography variant="subText" sx={{ color: themeData.textSecondary, mt: 1, maxWidth: "550px", mx: "auto", px: 1 }}>
             Available for Frontend, React Native & Full-Stack roles (Remote or Hybrid).
           </Typography>
         </Grid>
 
         {/* Direct Contact Cards */}
-        <Grid size={12} sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: 2, mb: 4 }}>
+        <Grid size={12} sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: { xs: 1, sm: 2 }, mb: { xs: 3, sm: 4 } }}>
           <Button
             onClick={handleCopyEmail}
             startIcon={copiedEmail ? <Check sx={{ color: "#22d3ee" }} /> : <Email />}
             endIcon={<ContentCopy sx={{ fontSize: "14px !important", opacity: 0.7 }} />}
             sx={{
-              padding: "10px 20px !important",
+              padding: { xs: "8px 14px !important", sm: "10px 20px !important" },
               borderRadius: "12px !important",
               backgroundColor: `${themeData.glassBg} !important`,
               border: `1px solid ${themeData.glassBorder} !important`,
               color: `${themeData.text} !important`,
               textTransform: "none",
               fontWeight: "600 !important",
+              fontSize: { xs: "12.5px !important", sm: "13.5px !important" },
+              maxWidth: "100%",
               "&:hover": { borderColor: themeData.accent },
             }}
           >
@@ -148,13 +150,15 @@ function Contact() {
             href="tel:+919054736628"
             startIcon={<Phone />}
             sx={{
-              padding: "10px 20px !important",
+              padding: { xs: "8px 14px !important", sm: "10px 20px !important" },
               borderRadius: "12px !important",
               backgroundColor: `${themeData.glassBg} !important`,
               border: `1px solid ${themeData.glassBorder} !important`,
               color: `${themeData.text} !important`,
               textTransform: "none",
               fontWeight: "600 !important",
+              fontSize: { xs: "12.5px !important", sm: "13.5px !important" },
+              maxWidth: "100%",
               "&:hover": { borderColor: themeData.accent },
             }}
           >
@@ -165,13 +169,14 @@ function Contact() {
             icon={<LocationOn sx={{ color: "#22d3ee !important" }} />}
             label="Gujarat, India (Open to Remote)"
             sx={{
-              padding: "20px 14px",
+              padding: { xs: "16px 12px", sm: "18px 14px" },
               borderRadius: "12px",
               backgroundColor: themeData.glassBg,
               border: `1px solid ${themeData.glassBorder}`,
               color: themeData.text,
               fontWeight: 600,
-              fontSize: "13.5px",
+              fontSize: { xs: "12.5px", sm: "13.5px" },
+              maxWidth: "100%",
             }}
           />
         </Grid>
@@ -268,7 +273,11 @@ function Contact() {
                       />
                     )
                   }
-                  sx={{ padding: "12px 32px !important", fontSize: "15px !important" }}
+                  sx={{
+                    padding: { xs: "12px 24px !important", sm: "12px 32px !important" },
+                    fontSize: "15px !important",
+                    width: { xs: "100%", sm: "auto" },
+                  }}
                 >
                   {btnLoad ? <CircularProgress size={22} color="inherit" /> : "Send Message"}
                 </Button>

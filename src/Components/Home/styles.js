@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 const useStyles = (themeData) =>
   makeStyles(() => ({
     container: {
-      padding: "100px 24px 80px",
+      padding: "90px 24px 70px",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -11,6 +11,13 @@ const useStyles = (themeData) =>
       overflow: "hidden",
       width: "100%",
       maxWidth: "100%",
+      boxSizing: "border-box",
+      "@media (max-width:960px)": {
+        padding: "48px 20px 44px",
+      },
+      "@media (max-width:480px)": {
+        padding: "36px 16px 36px",
+      },
       "&::before": {
         content: '""',
         position: "absolute",
@@ -24,6 +31,11 @@ const useStyles = (themeData) =>
         zIndex: 0,
         pointerEvents: "none",
         animation: "auroraDrift1 18s ease-in-out infinite",
+        "@media (max-width:768px)": {
+          width: 260,
+          height: 260,
+          filter: "blur(70px)",
+        },
       },
       "&::after": {
         content: '""',
@@ -38,6 +50,11 @@ const useStyles = (themeData) =>
         zIndex: 0,
         pointerEvents: "none",
         animation: "auroraDrift2 22s ease-in-out infinite",
+        "@media (max-width:768px)": {
+          width: 240,
+          height: 240,
+          filter: "blur(70px)",
+        },
       },
     },
     auroraBlob3: {
@@ -52,6 +69,9 @@ const useStyles = (themeData) =>
       zIndex: 0,
       pointerEvents: "none",
       animation: "auroraDrift3 26s ease-in-out infinite",
+      "@media (max-width:768px)": {
+        display: "none",
+      },
     },
     nameGradient: {
       background: themeData.gradient,
@@ -70,35 +90,43 @@ const useStyles = (themeData) =>
       maxWidth: "1200px",
       width: "100%",
       margin: "0 auto",
+      boxSizing: "border-box",
       "@media (max-width:960px)": {
         flexDirection: "column-reverse",
         textAlign: "center",
-        gap: "32px",
+        gap: "28px",
       },
     },
     contentLeft: {
       flex: "1 1 580px",
       maxWidth: "680px",
+      boxSizing: "border-box",
       "@media (max-width:960px)": {
         maxWidth: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        "& .eyebrow-wrapper": {
+          justifyContent: "center !important",
+          width: "100% !important",
+        },
       },
     },
     mainHeading: {
-      fontSize: "clamp(32px, 5vw, 54px) !important",
+      fontSize: "clamp(26px, 6.5vw, 52px) !important",
       fontWeight: "700 !important",
-      lineHeight: "1.15 !important",
+      lineHeight: "1.18 !important",
       marginTop: "8px !important",
+      wordBreak: "break-word",
     },
     typeWriterWrapper: {
       minHeight: "44px",
       display: "flex",
       alignItems: "center",
-      margin: "12px 0px 16px",
+      margin: "10px 0px 14px",
       "@media (max-width:960px)": {
         justifyContent: "center",
+        textAlign: "center",
       },
     },
     borderWrapper: {
@@ -112,6 +140,8 @@ const useStyles = (themeData) =>
       background: themeData.gradient,
       animation: "$breathe 4s ease-in-out infinite",
       flexShrink: 0,
+      maxWidth: "100%",
+      boxSizing: "border-box",
     },
     "@keyframes breathe": {
       "0%, 100%": {
@@ -123,22 +153,34 @@ const useStyles = (themeData) =>
     },
     img: {
       borderRadius: "50%",
-      width: "clamp(280px, 32vw, 420px) !important",
-      height: "clamp(280px, 32vw, 420px) !important",
+      width: "clamp(200px, 45vw, 400px) !important",
+      height: "clamp(200px, 45vw, 400px) !important",
+      maxWidth: "100%",
       display: "block",
       backgroundColor: themeData.surface,
       boxShadow: `inset 0 0 0 4px ${themeData.background}`,
       "& img": {
         objectFit: "cover",
       },
+      "@media (max-width:480px)": {
+        width: "210px !important",
+        height: "210px !important",
+      },
     },
     ctaContainer: {
       display: "flex",
       flexWrap: "wrap",
-      gap: 15,
-      marginTop: 25,
+      gap: 12,
+      marginTop: 22,
       "@media (max-width:960px)": {
         justifyContent: "center",
+      },
+      "@media (max-width:480px)": {
+        width: "100%",
+        "& a, & button": {
+          width: "100%",
+          justifyContent: "center",
+        },
       },
     },
     ctaOutline: {
@@ -161,7 +203,7 @@ const useStyles = (themeData) =>
     },
     socialContainer: {
       display: "flex",
-      gap: 16,
+      gap: 14,
       marginTop: 8,
       "@media (max-width:960px)": {
         justifyContent: "center",
@@ -217,19 +259,26 @@ const useStyles = (themeData) =>
       lineHeight: "1.6",
       "& .MuiTypography-root": {
         lineHeight: "1.6 !important",
+        fontSize: "clamp(13.5px, 2.5vw, 15.5px) !important",
       },
     },
     workContainer: {
       display: "flex",
       alignItems: "center",
-      gap: 20,
+      gap: 16,
       marginTop: 28,
+      maxWidth: "100%",
+      boxSizing: "border-box",
       "@media (max-width:960px)": {
         justifyContent: "center",
       },
+      "@media (max-width:480px)": {
+        gap: 10,
+        width: "100%",
+      },
     },
     card: {
-      padding: "16px 26px",
+      padding: "16px 24px",
       borderRadius: 16,
       backgroundColor: themeData.glassBg,
       backdropFilter: "blur(12px)",
@@ -237,11 +286,21 @@ const useStyles = (themeData) =>
       border: `1px solid ${themeData.glassBorder}`,
       boxShadow: themeData.shadow,
       transition: "transform 250ms ease, box-shadow 250ms ease",
+      "@media (max-width:480px)": {
+        flex: 1,
+        padding: "12px 10px",
+        textAlign: "center",
+      },
       "& .MuiTypography-head": {
         background: themeData.gradient,
         WebkitBackgroundClip: "text",
         backgroundClip: "text",
         WebkitTextFillColor: "transparent",
+        fontSize: "clamp(20px, 5vw, 26px) !important",
+      },
+      "& .MuiTypography-subText": {
+        fontSize: "clamp(11.5px, 2.8vw, 13px) !important",
+        lineHeight: 1.3,
       },
       "&:hover": {
         transform: "translateY(-4px)",

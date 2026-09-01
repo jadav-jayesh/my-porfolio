@@ -48,8 +48,7 @@ const useStyles = (themeData) =>
       },
     },
     iconContainer: {
-      transition: "3s",
-      gap: 10,
+      gap: 6,
       alignItems: "center",
       display: "none",
       "@media (max-width:900px)": {
@@ -58,10 +57,28 @@ const useStyles = (themeData) =>
     },
     menuIcon: {
       color: `${themeData.white} !important`,
-      transition: "5s",
+      padding: "8px !important",
+      transition: "all 0.3s ease !important",
       display: "none",
       "@media (max-width:900px)": {
-        display: "block",
+        display: "flex",
+      },
+    },
+    drawerTab: {
+      fontSize: "15px !important",
+      fontWeight: "600 !important",
+      color: `${themeData.white} !important`,
+      textTransform: "none !important",
+      alignItems: "flex-start !important",
+      padding: "12px 18px !important",
+      minHeight: "44px !important",
+      minWidth: "0 !important",
+      borderRadius: "10px",
+      margin: "3px 12px !important",
+      transition: "all 0.2s ease !important",
+      "&:hover, &.Mui-selected": {
+        backgroundColor: `${themeData.glassBorder} !important`,
+        color: `${themeData.accent} !important`,
       },
     },
   }));

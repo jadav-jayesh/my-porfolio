@@ -15,12 +15,14 @@ const Eyebrow = ({ index, label, center = true }) => {
 
   return (
     <div
+      className="eyebrow-wrapper"
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: center ? "center" : "flex-start",
         marginBottom: 14,
         width: center ? "100%" : "auto",
+        maxWidth: "100%",
       }}
     >
       <span
@@ -30,15 +32,19 @@ const Eyebrow = ({ index, label, center = true }) => {
           gap: 7,
           fontFamily:
             "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-          fontSize: 12,
+          fontSize: "clamp(11px, 2.8vw, 12px)",
           fontWeight: 600,
-          letterSpacing: "1px",
+          letterSpacing: "0.5px",
           textTransform: "uppercase",
           color: color,
           padding: "4px 12px",
           borderRadius: 20,
           backgroundColor: `${color}18`,
           border: `1px solid ${color}38`,
+          maxWidth: "100%",
+          boxSizing: "border-box",
+          lineHeight: 1.4,
+          textAlign: "center",
         }}
       >
         <span

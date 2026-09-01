@@ -12,7 +12,7 @@ function Skills() {
 
   return (
     <Grid container className={className.container}>
-      <Grid size={{ xs: 11, md: 9 }}>
+      <Grid size={{ xs: 11.5, sm: 11, md: 9 }}>
         <Grid className={className.mainHeader}>
           <Eyebrow index="01" label="Tech Stack & Capabilities" />
           <Typography variant="title" style={{ color: themeData.headerText }}>
@@ -30,7 +30,11 @@ function Skills() {
             production web, mobile, and AI applications.
           </Typography>
         </Grid>
-        <Grid container className={className.cardContainer} spacing={3}>
+        <Grid
+          container
+          className={className.cardContainer}
+          spacing={{ xs: 2, sm: 2.5, md: 3 }}
+        >
           {Object.keys(skills).map((category) => {
             const meta = categoryLabels[category] || {
               title: category,

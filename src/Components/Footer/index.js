@@ -28,7 +28,7 @@ function Footer(props) {
         flexDirection: "column",
       }}
     >
-      <Grid size={{ xs: 11, md: 9 }}>
+      <Grid size={{ xs: 11.5, sm: 11, md: 9 }}>
         <Grid
           style={{
             display: "flex",
@@ -40,6 +40,7 @@ function Footer(props) {
           <IconButton
             onClick={(event) => handleScrollToSection(event, "home")}
             className={classes.arrow}
+            aria-label="Scroll to top"
           >
             <ArrowUpward />
           </IconButton>
@@ -50,16 +51,8 @@ function Footer(props) {
             backgroundColor: themeData.textSecondary,
           }}
         />
-        <Grid
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Typography
-            style={{ color: themeData.white, fontSize: 16, fontWeight: 700 }}
-          >
+        <Grid className={classes.bottomRow}>
+          <Typography className={classes.copyrightText}>
             Copyright © {new Date().getFullYear()} Jayesh Jadav. All rights
             reserved
           </Typography>

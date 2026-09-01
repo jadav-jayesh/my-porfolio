@@ -84,9 +84,10 @@ function MainLogo() {
           style={{
             color: themeData.white,
             fontWeight: 800,
-            letterSpacing: "2px",
-            fontSize: 16,
+            letterSpacing: "clamp(1px, 0.3vw, 2px)",
+            fontSize: "clamp(13px, 3.8vw, 16px)",
             lineHeight: 1.1,
+            whiteSpace: "nowrap",
           }}
         >
           JAYESH
@@ -96,12 +97,13 @@ function MainLogo() {
           variant="subTitle"
           style={{
             color: themeData.textSecondary,
-            fontSize: 10,
+            fontSize: "clamp(8.5px, 2.2vw, 10px)",
             fontWeight: 600,
-            letterSpacing: "2.5px",
+            letterSpacing: "clamp(1px, 0.4vw, 2.5px)",
             textTransform: "uppercase",
             lineHeight: 1,
             marginTop: 2,
+            whiteSpace: "nowrap",
           }}
         >
           Front-End Engineer
