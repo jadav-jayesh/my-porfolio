@@ -1,114 +1,53 @@
-import { Typography } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
+import Images from "../../Config/images";
 
-function MainLogo() {
-  const { themeData } = useSelector((state) => state.auth);
+function MainLogo({ variant = "horizontal" }) {
+  if (variant === "stacked") {
+    return (
+      <div
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          lineHeight: 0,
+        }}
+      >
+        <img
+          src={Images.logoStacked}
+          alt="Jayesh Jadav — Front-End Developer"
+          style={{
+            height: "clamp(60px, 8vw, 85px)",
+            width: "auto",
+            objectFit: "contain",
+            filter: "drop-shadow(0 4px 14px rgba(0, 180, 216, 0.25))",
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div
       style={{
-        display: "flex",
+        display: "inline-flex",
         alignItems: "center",
-        gap: 12,
+        cursor: "pointer",
+        lineHeight: 0,
       }}
     >
-      {/* Geometric hexagonal gem mark */}
-      <div style={{ position: "relative", width: 46, height: 46, flexShrink: 0 }}>
-        {/* slow-rotating gradient ring behind the gem */}
-        <div
-          style={{
-            position: "absolute",
-            inset: -4,
-            borderRadius: "50%",
-            border: `2px dashed ${themeData.accent}`,
-            opacity: 0.55,
-            animation: "logoSpin 14s linear infinite",
-          }}
-        />
-        {/* hexagon gem */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 2,
-            background: themeData.gradient,
-            clipPath:
-              "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: `0 6px 20px -6px ${themeData.glow}`,
-          }}
-        >
-          {/* </> code glyph */}
-          <Typography
-            style={{
-              color: themeData.white,
-              fontWeight: 900,
-              fontSize: 17,
-              letterSpacing: "-1px",
-              lineHeight: 1,
-              fontFamily: "'JetBrains Mono', ui-monospace, monospace",
-              transform: "translateY(-1px)",
-            }}
-          >
-            {"</>"}
-          </Typography>
-        </div>
-        {/* accent facet highlight */}
-        <div
-          style={{
-            position: "absolute",
-            top: 8,
-            left: 14,
-            width: 8,
-            height: 8,
-            borderRadius: "50%",
-            background: themeData.white,
-            opacity: 0.85,
-            boxShadow: `0 0 8px ${themeData.white}`,
-          }}
-        />
-      </div>
-
-      {/* Compact wordmark */}
-      <div
+      <img
+        src={Images.logoMain}
+        alt="Jayesh Jadav — Front-End Developer"
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
+          height: "clamp(34px, 4.2vw, 42px)",
+          width: "auto",
+          maxWidth: "100%",
+          objectFit: "contain",
+          filter: "drop-shadow(0 2px 8px rgba(0, 180, 216, 0.2))",
+          transition: "transform 0.25s ease, filter 0.25s ease",
         }}
-      >
-        <Typography
-          variant="tableTitle"
-          style={{
-            color: themeData.white,
-            fontWeight: 800,
-            letterSpacing: "clamp(1px, 0.3vw, 2px)",
-            fontSize: "clamp(13px, 3.8vw, 16px)",
-            lineHeight: 1.1,
-            whiteSpace: "nowrap",
-          }}
-        >
-          JAYESH
-          <span style={{ color: themeData.accent }}> JADAV</span>
-        </Typography>
-        <Typography
-          variant="subTitle"
-          style={{
-            color: themeData.textSecondary,
-            fontSize: "clamp(8.5px, 2.2vw, 10px)",
-            fontWeight: 600,
-            letterSpacing: "clamp(1px, 0.4vw, 2.5px)",
-            textTransform: "uppercase",
-            lineHeight: 1,
-            marginTop: 2,
-            whiteSpace: "nowrap",
-          }}
-        >
-          Front-End Engineer
-        </Typography>
-      </div>
+      />
     </div>
   );
 }
